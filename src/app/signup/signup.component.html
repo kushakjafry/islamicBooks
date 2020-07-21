@@ -1,0 +1,50 @@
+<div class="container-fluid">
+<mat-toolbar style="background-color: transparent;">
+    SignUp
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+<hr>
+<div *ngIf="errMess">
+  <alert [type]="alert.type">{{ alert.msg }}</alert>
+</div>
+
+<form novalidate #signupForm="ngForm" (ngSubmit)="onSubmit()" [hidden] = "hideForm">
+
+  <mat-dialog-content>
+    <p>
+        <mat-form-field style="width: 45%;">
+            <input matInput placeholder="Full Name" type="text" [(ngModel)] = "signup.fullname" name="fullname" #fullname="ngModel" required>
+            <mat-error *ngIf="fullname.errors?.required">Name is required</mat-error>
+        </mat-form-field>
+      <mat-form-field style="width: 45%;">
+        <input matInput placeholder="Email" type="text" [(ngModel)]="signup.username" name="username"  #username="ngModel" required email>
+        <mat-error *ngIf="username.errors?.required">Email is required</mat-error>
+        <mat-error *ngIf="username.errors?.email">Email is not valid</mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 95%;">
+        <input matInput placeholder="Password" type="password" [(ngModel)]="signup.password" name="password" #password="ngModel" required>
+        <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
+      </mat-form-field>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" class="btn btn-success btn-block" [disabled]="signupForm.form.invalid">Get started for free</button><br>
+    <div class="container-fluid" style="margin-top: 1%;">
+      <div class="row">
+        <div class="col col-xs-4">
+        </div>
+        <div class="col col-xs-4">
+          <button class="btn btn-danger align-self-center" style="width: inherit;" mat-dialog-close>Cancel</button>
+        </div>
+        <div class="col col-xs-4">
+        </div>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</form>
+<div [hidden] = "hideForm === false">
+  <mat-spinner></mat-spinner>
+  <h4>Registering....Please wait</h4>
+</div>
+</div>

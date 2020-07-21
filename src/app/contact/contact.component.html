@@ -1,0 +1,78 @@
+<header class="masthead" style="background-image: url('../../assets/contact-1.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>Contact Us</h1>
+          <span class="subheading">Have questions or recomendation? We have answers.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container">
+    <div class="row">
+    </div>
+    <div class="row">
+      <div class="col col-12" *ngIf="errMess">
+        <alert [type]="alert.type">{{ alert.msg }}</alert>
+      </div>
+        <div class="col col-12">
+            <form novalidate [formGroup] = "feedbackForm" #feedbackform=ngForm (ngSubmit)=onSubmit() *ngIf ="showForm">
+                <p>
+                    <mat-form-field class="half-width">
+                      <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+                      <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="half-width">
+                      <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+                      <mat-error *ngIf="formErrors.lastname">{{formErrors.lastname}}</mat-error>
+                    </mat-form-field>
+                  </p>
+                  <p>
+                    <mat-form-field class="half-width">
+                      <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required>
+                      <mat-error *ngIf="formErrors.telnum">{{formErrors.telnum}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="half-width">
+                      <input matInput formControlName="email" placeholder="Email" type="email" email required>
+                      <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+                    </mat-form-field>
+                  </p>
+                  <table class="form-size">
+                    <td>
+                      <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
+                    </td>
+                    <td>
+                      <mat-select placeholder="How?" formControlName="contacttype">
+                        <mat-option *ngFor="let ctype of contactType" [value]="ctype">
+                          {{ ctype }}
+                        </mat-option>
+                      </mat-select>
+                    </td>
+                    </table>
+                  <p>
+                    <mat-form-field class="full-width">
+                      <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
+                    </mat-form-field>
+                  </p>
+                  <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
+               </form>
+        </div>
+        <div [hidden] = "showForm || submitted">
+          <mat-spinner></mat-spinner>
+          <h4>Sending Feedback...</h4>
+        </div>
+        <div *ngIf = "submitted"> 
+          <h3>Your Submission</h3>
+        <p>First Name: {{submitted.firstname}}</p>
+        <p>Last Name: {{submitted.lastname}}</p>
+        <p>Tel. Number: {{submitted.telnum}}</p>
+        <p>Email: {{submitted.email}}</p>
+        <p>Contact You?: {{submitted.agree}}</p>
+        <p>How?: {{submitted.contacttype}}</p>
+        <p>Feedback: {{submitted.message}}</p>
+        </div>
+    </div>
+</div>

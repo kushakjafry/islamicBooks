@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col" *ngIf="successMess">
+            <h1 style="color:green">Confirmation successfull</h1>
+            <p><strong>Redirecting you to home page</strong></p>
+        </div>
+        <div class="col" *ngIf="errMess">
+            <h1 style="color: red;">Confirmation failed plz signup again</h1>
+        </div>
+        <div class="col" [hidden] = "successMess || errMess">
+            <mat-spinner><h4>Loading . . . Please Wait</h4></mat-spinner>
+        </div>
+    </div>
+</div>
