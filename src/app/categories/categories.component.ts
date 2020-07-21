@@ -1,7 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { BookService } from '../services/book.service';
 import { CategoryService } from '../services/category.service';
-import { Book } from '../shared/book';
 import { category } from '../shared/category';
 
 @Component({
@@ -15,7 +13,6 @@ export class CategoriesComponent implements OnInit {
   errMess: String[];
 
   constructor(private categoryService:CategoryService,
-    private bookService:BookService,
     @Inject('baseURLFile') private baseURLFile) { }
 
   ngOnInit(): void {

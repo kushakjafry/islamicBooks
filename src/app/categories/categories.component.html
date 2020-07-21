@@ -5,16 +5,38 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <ul class="list-unstyled"  *ngFor="let category of Categories">
-            <li class="media" style="height: 20vh;">
-                <img src="{{baseURLFile + category.image}}" alt="{{category.category}}" style="object-fit: cover!important; height: inherit;">         
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1">{{category.category.toUpperCase()}}</h5>
-                    {{category.description}}
+<div [hidden]="Categories">
+    <mat-spinner></mat-spinner>
+    <h4>Loading please Wait ...</h4>
+</div>
+<div class="container" *ngIf="Categories">
+    <div class="row row-1 align-items-center" *ngFor="let category of Categories let even = even let odd = odd" [routerLink]="['/category',category.category]">
+        <div class="col-12 col-sm-4 col-md-3 order-sm-last" *ngIf="odd">
+            <h3>{{category.category.toUpperCase()}}</h3>
+        </div>
+        <div class="col col-sm order-sm-first col-md" *ngIf="odd">
+            <div class="media">
+                <img src="{{baseURLFile + category.image}}" class="d-flex mr-3 image-thumbnail align-self-center" style="object-fit: cover;" alt="{{category.category}}" width="110px" height="110px">
+                <div class=media-body>
+                    <h2 class="mt-0">{{category.category}}</h2>
+                    <p>{{category.description}}</p>
+                    <a [routerLink]="['/category',category.category]" class="stretched-link">Search this category</a>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-3 order-sm-first" *ngIf="even">
+            <h3>{{category.category.toUpperCase()}}</h3>
+        </div>
+        <div class="col col-sm order-sm-last col-md" *ngIf="even">
+            <div class="media">
+                <div class=media-body>
+                    <h2 class="mt-0">{{category.category}}</h2>
+                    <p>{{category.description}}</p>
+                    <a [routerLink]="['/category',category.category]" class="stretched-link">Search this category</a>
+                </div>
+                <img src="{{baseURLFile + category.image}}" class="d-flex mr-3 image-thumbnail align-self-center" style="object-fit: cover;" alt="{{category.category}}" width="110px" height="110px">
+            </div>
+        </div>
+        <hr>
     </div>
 </div>

@@ -60,6 +60,7 @@ import { SignupComponent } from './signup/signup.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { CategoriesComponent } from './categories/categories.component';
     LoginComponent,
     SignupComponent,
     ConfirmationComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -43,7 +43,7 @@ categoryRouter.route('/')
 categoryRouter.route('/:category')
 .options(corsWithOptions,(req,res) => { res.sendStatus(200);})
 .get(cors(),(req,res,next) => {
-    CategoryModel.find({category:req.params.category})
+    CategoryModel.findOne({category:req.params.category})
     .then((category) => {
         res.statusCode = 200;
         res.setHeader('Content-Type','application/json');

@@ -2,7 +2,7 @@ import * as cors from 'cors';
 import * as express from 'express';
 const app = express();
 
-const whiteList = ['https://islamic-books.herokuapp.com/'];
+const whiteList = ['https://islamic-books.herokuapp.com/','http://localhost:4200/'];
 export var corsOptionsDelegate = (req, callback) => {
     var corsOptions;
     console.log(req.header('Origin'));

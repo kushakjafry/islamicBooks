@@ -40,15 +40,6 @@ export class BookshelfComponent implements OnInit {
         errmess => this.errMess = <any>errmess);
   }
 
-  hoverIn(){
-    this.hover=true;
-    console.log(this.hover);
-  }
-  hoverOut(){
-    this.hover=false;
-    console.log(this.hover);
-  }
-
   onValueChanged(data?:any){
     console.log(data);
     if(this.searchForm.value.search){

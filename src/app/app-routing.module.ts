@@ -9,6 +9,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { SignupComponent } from './signup/signup.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'aboutus',component:AboutusComponent},
   {path:'confirm',component:ConfirmationComponent},
   {path:'categories',component:CategoriesComponent},
+  {path:'category/:category',component:CategoryComponent},
   {path:'',redirectTo:'/home',pathMatch:'full'}
 ];
 

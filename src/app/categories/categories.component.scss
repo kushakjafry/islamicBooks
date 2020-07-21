@@ -13,6 +13,17 @@
         color: floralwhite; 
     }
 
-li{
-   
-}
+    .row-1 {
+        margin: 0px auto;
+        padding: 50px 0px;
+        border-bottom: 1px ridge;
+        opacity: 0.75;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+    .row-1:hover{
+        opacity: 1;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+      
