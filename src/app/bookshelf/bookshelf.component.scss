@@ -34,3 +34,13 @@ mat-card{
     .card-text{
         padding-left: 5%;
     }
+  .loading-div{
+      text-align: center;
+      #loading{
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+  }

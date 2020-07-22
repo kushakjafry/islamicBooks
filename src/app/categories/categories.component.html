@@ -6,8 +6,9 @@
     </div>
 </div>
 <div [hidden]="Categories">
-    <mat-spinner></mat-spinner>
-    <h4>Loading please Wait ...</h4>
+
+    <app-loading></app-loading>
+    
 </div>
 <div class="container" *ngIf="Categories">
     <div class="row row-1 align-items-center" *ngFor="let category of Categories let even = even let odd = odd" [routerLink]="['/category',category.category]">

@@ -36,8 +36,13 @@
           <button mat-dialog-close class="btn btn-danger" style="width: inherit;">Cancel</button>
         </div>
       </div>
+      <div class="row" style="text-align: center; margin-top: 2%;" >
+        <div class="col col-12"><a mat-button (click)="openforgotpassword()"><strong>Forgot password</strong></a></div>
+      </div>
+      <div class="row">
+        <div class="col col-12" style="text-align: center; margin-top: 2%;">Do not have an Account! <a mat-button (click)="openSignupForm()" style="color: green;"><strong>Create One</strong></a></div>
+      </div>
     </div>
-    <p style="margin-top: 2%;">Do not have an Account! <a mat-button (click)="openSignupForm()" style="color: green;"><strong>Create One</strong></a></p>
   </mat-dialog-actions>
 </form>
 <div [hidden] = "hideForm === false">

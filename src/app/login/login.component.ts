@@ -67,5 +67,6 @@ export class LoginComponent implements OnInit {
     SignupRef.afterClosed()
     .subscribe(() => this.dialogRef.close())
   }
-
+  
+  openforgotpassword(){}
 }

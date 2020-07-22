@@ -7,6 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {ReactiveFormsModule} from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgxContentLoadingModule } from 'ngx-content-loading';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -61,6 +62,7 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
+import { ForgotComponent } from './forgot/forgot.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { CategoryComponent } from './category/category.component';
     SignupComponent,
     ConfirmationComponent,
     CategoriesComponent,
-    CategoryComponent
+    CategoryComponent,
+    ForgotComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -105,7 +108,8 @@ import { CategoryComponent } from './category/category.component';
     MatInputModule,
     MatDialogModule,
     MatTooltipModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    NgxContentLoadingModule
   ],
   providers: [
     BookService,
