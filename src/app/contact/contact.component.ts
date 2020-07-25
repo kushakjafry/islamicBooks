@@ -13,7 +13,16 @@ export class ContactComponent implements OnInit {
 
   feedbackForm: FormGroup;
   @ViewChild('feedbackform') feedbackFormDirective;
-  contactType = ['None', 'Tel', 'Email'];
+  contactType = [{
+    type:'None',
+    icon:'times'
+  },{
+    type: 'Tel No.',
+    icon: 'phone'
+  },{
+    type: 'Email',
+    icon:'envelope'
+  }]
   feedback: Feedback;
   showForm: Boolean = true;
   submitted = null;

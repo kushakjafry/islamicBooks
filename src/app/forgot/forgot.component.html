@@ -1,1 +1,37 @@
-<p>forgot works!</p>
+<mat-toolbar style="background-color: transparent;">
+    Forgot Password
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+<hr>
+<div *ngIf="errMess || successMess">
+  <alert [type]="alerts.type">{{ alerts.msg }}</alert>
+</div>
+
+<form novalidate #emailForm="ngForm" (ngSubmit) = "onSubmit()" [hidden] = "hideForm">
+  <mat-dialog-content>
+    <p>
+      <mat-form-field style="width: 95%;" appearance="outline">
+        <mat-label>Enter you email</mat-label>
+        <input matInput placeholder="Your email" type="text" [(ngModel)]="user.email" name="email"  #email="ngModel" required email>
+        <mat-hint>Email should have been registered with us</mat-hint>
+        <mat-error *ngIf="email.errors?.required">Email is required</mat-error>
+        <mat-error *ngIf="email.errors?.email">Email is not valid</mat-error>
+      </mat-form-field>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col col-sm-4">
+          <button type="submit" class="btn btn-primary" [disabled]="emailForm.form.invalid" style="width: inherit;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">Submit</button>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</form>
+<div [hidden] ="!hideForm">
+  <mat-spinner></mat-spinner>
+  <h4>Sending Request ....</h4>
+</div>
+

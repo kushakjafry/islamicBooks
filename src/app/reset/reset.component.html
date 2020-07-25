@@ -1,0 +1,48 @@
+<div class="full">
+<div class="main">
+    <mat-toolbar style="background-color: transparent; display:block">
+      Reset Password
+    </mat-toolbar>
+  <hr>
+<div *ngIf="errMess || successMess">
+  <div class="alert alert-{{alerts.type}}">
+    <button type="button" class="close" (click)="alertDismiss()">&times;</button>
+    {{alerts.msg}}
+    </div>
+  </div>
+<div class="container">
+  <form novalidate (ngSubmit)="onSubmit" [formGroup]="resetForm" #resetform=ngForm>
+    <mat-form-field style="width: 95%;" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" placeholder="Enter your new password" type="password" required>
+      <span matSuffix class="fa fa-lock"></span>
+      <mat-error *ngIf="formErrors.password">{{formErrors.password}}</mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 95%;" appearance="outline">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput formControlName="confirmPassword" placeholder="Enter the same password" type="password" required>
+      <span matSuffix class="fa fa-lock"></span>
+      <mat-hint>Both passwords must be same</mat-hint>
+      <mat-error *ngIf="formErrors.confirmPassword">{{formErrors.confirmPassword}}</mat-error>
+    </mat-form-field>
+    <mat-dialog-actions>
+      <div class="container-fluid" style="margin-top:2%">
+        <div class="row">
+          <div class="col col-12 col-sm-4">
+            <button  class="btn btn-warning" (click)="onSubmit()" [hidden] = "hideForm" type="submit" [disabled]="resetForm.invalid" style="width: inherit;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">Reset</button>
+            <button class="btn btn-warning" [hidden] = "hideForm === false" disabled style="width: inherit;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+              <span class="spinner-border spinner-border-sm"></span>
+                Loading..
+            </button>          
+          </div>
+          <div class="col col-12 col-sm-4"></div>
+          <div class="col col-12 col-sm-4">
+            <button class="btn btn-danger" mat-dialog-close style="width: inherit;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" [disabled]="hideForm" routerLink="/home">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-actions>
+</form>
+</div>
+</div>
+</div>

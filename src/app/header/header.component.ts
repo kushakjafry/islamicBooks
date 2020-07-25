@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   isCollapsed = true;
 
   openLoginForm() {
-    const loginRef = this.dialog.open(LoginComponent, {width: '500px', height: '400px'});
+    const loginRef = this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
     loginRef.afterClosed()
     .subscribe(result => {
       console.log(result);

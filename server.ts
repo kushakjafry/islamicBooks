@@ -12,6 +12,7 @@ import {default as categoryRouter} from './routes/categoryRouter';
 import { join } from 'path';
 import * as mongoose from 'mongoose';
 import * as passport from 'passport';
+import * as authenticate from './authenticate';
 global['localStorage'] = localStorage;
 require('dotenv').config();
 
@@ -32,7 +33,8 @@ export function app(): express.Express {
 
   const distFolder = join(process.cwd(), 'dist/islamicbooks/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-
+  const adminFolder = join(process.cwd(), 'dist/islamicbooka/browser/admin');
+  const adminHtml = existsSync(join(adminFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({

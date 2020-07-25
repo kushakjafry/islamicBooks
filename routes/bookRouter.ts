@@ -10,6 +10,7 @@ namespace Express {
         _id:any;
         username:any;
         confirmed:boolean;
+        resetTime:Date;
     }
 }
 }

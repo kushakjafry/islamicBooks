@@ -13,33 +13,42 @@
 
   <mat-dialog-content>
     <p>
-        <mat-form-field style="width: 45%;">
-            <input matInput placeholder="Full Name" type="text" [(ngModel)] = "signup.fullname" name="fullname" #fullname="ngModel" required>
+        <mat-form-field style="width: 45%;" appearance="outline">
+          <mat-label>Full Name</mat-label>
+            <input matInput type="text" [(ngModel)] = "signup.fullname" name="fullname" #fullname="ngModel" required>
+            <span matSuffix class="fa fa-user-circle"></span>
             <mat-error *ngIf="fullname.errors?.required">Name is required</mat-error>
         </mat-form-field>
-      <mat-form-field style="width: 45%;">
-        <input matInput placeholder="Email" type="text" [(ngModel)]="signup.username" name="username"  #username="ngModel" required email>
+      <mat-form-field style="width: 45%;" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Ex. some@some.com" type="text" [(ngModel)]="signup.username" name="username"  #username="ngModel" required email>
+        <span matSuffix class="fa fa-envelope"></span>
         <mat-error *ngIf="username.errors?.required">Email is required</mat-error>
         <mat-error *ngIf="username.errors?.email">Email is not valid</mat-error>
       </mat-form-field>
-      <mat-form-field style="width: 95%;">
+      <mat-form-field style="width: 95%;" appearance="outline">
+        <mat-label>Password</mat-label>
         <input matInput placeholder="Password" type="password" [(ngModel)]="signup.password" name="password" #password="ngModel" required>
+        <span matSuffix class="fa fa-lock"></span>
         <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
       </mat-form-field>
     </p>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button type="submit" class="btn btn-success btn-block" [disabled]="signupForm.form.invalid">Get started for free</button><br>
-    <div class="container-fluid" style="margin-top: 1%;">
-      <div class="row">
-        <div class="col col-xs-4">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col col-12 col-sm-4">
+            <button  class="btn btn-warning" [hidden] = "hideForm" type="submit" [disabled]="signupForm.form.invalid" style="width: inherit;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">Signup</button>
+            <button class="btn btn-warning" [hidden] = "hideForm === false" disabled style="width: inherit;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+              <span class="spinner-border spinner-border-sm"></span>
+                Loading..
+            </button>          
+          </div>
+          <div class="col col-12 col-sm-4"></div>
+          <div class="col col-12 col-sm-4">
+            <button class="btn btn-danger" mat-dialog-close style="width: inherit;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" [disabled]="hideForm">Cancel</button>
+          </div>
         </div>
-        <div class="col col-xs-4">
-          <button class="btn btn-danger align-self-center" style="width: inherit;" mat-dialog-close>Cancel</button>
-        </div>
-        <div class="col col-xs-4">
-        </div>
-      </div>
     </div>
   </mat-dialog-actions>
 </form>

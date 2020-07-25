@@ -15,6 +15,8 @@ import { AppComponent } from './app.component';
 import{BookService} from './services/book.service';
 import {FeedbackService} from './services/feedback.service';
 import {CategoryService} from './services/category.service';
+import {ForgotService} from './services/forgot.service';
+import {ResetService} from './services/reset.service';
 
 
 import { HeaderComponent } from './header/header.component';
@@ -63,6 +65,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { ForgotComponent } from './forgot/forgot.component';
+import { ResetComponent } from './reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +83,8 @@ import { ForgotComponent } from './forgot/forgot.component';
     ConfirmationComponent,
     CategoriesComponent,
     CategoryComponent,
-    ForgotComponent
+    ForgotComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -120,6 +124,8 @@ import { ForgotComponent } from './forgot/forgot.component';
     FeedbackService,
     ConfirmationService,
     CategoryService,
+    ForgotService,
+    ResetService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -15,6 +15,10 @@ const UserSchema = new mongoose.Schema({
     confirmed:{
         type:Boolean,
         default:false
+    },
+    resetTime:{
+        type:Date,
+        required:false
     }
 });
 

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatDialogRef, MatDialog} from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { SignupComponent } from '../signup/signup.component';
+import { ForgotComponent } from '../forgot/forgot.component';
 
 
 @Component({
@@ -68,5 +69,12 @@ export class LoginComponent implements OnInit {
     .subscribe(() => this.dialogRef.close())
   }
   
-  openforgotpassword(){}
+  openforgotpassword(){
+    const forgotRef = this.dialog.open(ForgotComponent,{width: '500px',height: '450px'});
+    forgotRef.afterClosed()
+    .subscribe(() => this.dialogRef.close());
+  }
+  alertDismiss(){
+    this.errMess = null;
+  }
 }

@@ -10,6 +10,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
+import { ResetComponent } from './reset/reset.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'confirm',component:ConfirmationComponent},
   {path:'categories',component:CategoriesComponent},
   {path:'category/:category',component:CategoryComponent},
+  {path:'reset',component:ResetComponent},
   {path:'',redirectTo:'/home',pathMatch:'full'}
 ];
 
