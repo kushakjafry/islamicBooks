@@ -16,5 +16,9 @@ export class DashboardComponent implements OnInit {
     this.nav.hide();
     this.footer.hide();
   }
+  ngOnDestroy(){
+    this.nav.show();
+    this.footer.show();
+  }
 
 }

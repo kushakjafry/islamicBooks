@@ -13,6 +13,7 @@ import { CategoryComponent } from './category/category.component';
 import { ResetComponent } from './reset/reset.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { AdminGuardService } from './services/admin-guard.service';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -25,7 +26,7 @@ const routes: Routes = [
   {path:'category/:category',component:CategoryComponent},
   {path:'reset',component:ResetComponent},
   { path: 'admin',
-  canActivate:[AuthGuardService],
+  canActivate:[AdminGuardService],
   loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path:'',redirectTo:'/home',pathMatch:'full'}
 ];

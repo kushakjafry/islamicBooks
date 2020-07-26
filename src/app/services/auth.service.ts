@@ -44,6 +44,7 @@ export class AuthService {
      .subscribe(res => {
        console.log('JWT Token Valid: ', res);
        this.sendUsername(res.user.username);
+       this.sendAdmin(res.user.admin);
      },
      err => {
        console.log('JWT Token invalid: ', err);
