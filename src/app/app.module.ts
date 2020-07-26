@@ -8,6 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 import {ReactiveFormsModule} from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxContentLoadingModule } from 'ngx-content-loading';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,7 +52,7 @@ import { LoginComponent } from './login/login.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { BaseUrlFile } from './shared/baseUrlFile';
 import { ConfirmationService} from './services/confirmation.service';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -66,6 +67,9 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { ResetComponent } from './reset/reset.component';
+import { NavbarService } from './services/navbar.service';
+import { FooterService } from './services/footer.service';
+
 
 @NgModule({
   declarations: [
@@ -113,7 +117,9 @@ import { ResetComponent } from './reset/reset.component';
     MatDialogModule,
     MatTooltipModule,
     AlertModule.forRoot(),
-    NgxContentLoadingModule
+    NgxContentLoadingModule,
+    BsDropdownModule.forRoot(),
+    MatMenuModule
   ],
   providers: [
     BookService,
@@ -126,6 +132,8 @@ import { ResetComponent } from './reset/reset.component';
     CategoryService,
     ForgotService,
     ResetService,
+    NavbarService,
+    FooterService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

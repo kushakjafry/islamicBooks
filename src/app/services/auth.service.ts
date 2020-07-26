@@ -10,6 +10,7 @@ interface AuthResponse {
   status: string;
   success: string;
   token: string;
+  admin:boolean;
 }
 
 interface SignUpResponse {
@@ -32,6 +33,7 @@ export class AuthService {
   isAuthenticated: Boolean = false;
   username: Subject<string> = new Subject<string>();
   authToken: string = undefined;
+  admin: Subject<boolean> = new Subject<boolean>();
 
    constructor(private http: HttpClient,
      private processHTTPMsgService: ProcessHttpMessageService) {
@@ -56,6 +58,12 @@ export class AuthService {
    clearUsername() {
      this.username.next(undefined);
    }
+   sendAdmin(admin: boolean) {
+    this.admin.next(admin);
+  }
+  clearAdmin() {
+    this.admin.next(undefined);
+  }
 
    loadUserCredentials() {
      console.log(this.tokenKey);
@@ -80,12 +88,14 @@ export class AuthService {
    useCredentials(credentials: any) {
      this.isAuthenticated = true;
      this.sendUsername(credentials.username);
+     this.sendAdmin(credentials.admin);
      this.authToken = credentials.token;
    }
 
    destroyUserCredentials() {
      this.authToken = undefined;
      this.clearUsername();
+     this.clearAdmin();
      this.isAuthenticated = false;
      localStorage.removeItem(this.tokenKey);
    }
@@ -103,7 +113,7 @@ export class AuthService {
      return this.http.post<AuthResponse>(baseURL + 'users/login',
        {'username': user.username, 'password': user.password})
        .pipe( map(res => {
-           this.storeUserCredentials({username: user.username, token: res.token});
+           this.storeUserCredentials({username: user.username, token: res.token, admin:res.admin});
            return {'success': true, 'username': user.username };
        }),
         catchError(error => this.processHTTPMsgService.handleError(error)));
@@ -123,5 +133,8 @@ export class AuthService {
 
    getToken(): string {
       return this.authToken;
+   }
+   getAdmin():Observable<boolean> {
+     return this.admin.asObservable();
    }
 }
