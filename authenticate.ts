@@ -52,7 +52,15 @@ export const verifyAdmin = ((req,res,next) => {
         return next();
     }else{
         var err = new Error('You are not authorized') as ErrorWithStatus;
-        err.status = 404;
+        err.status = 401;
         return next(err);
     }
 });
+export const verifyLogin = passport.authenticate('jwt',{session:false,failureRedirect:'http://localhost:4200/'});
+export const verifyLoginAdmin = ((req,res,next) => {
+    if(req.user.admin === true)
+    return next();
+    else{
+        res.redirect('http://localhost:4200/');
+    }
+})

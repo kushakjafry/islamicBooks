@@ -58,9 +58,6 @@ export function app(): express.Express {
     maxAge: '1y'
   }));
   // All regular routes use the Universal engine
-  server.get('/admin*',authenticate.verifyUser,authenticate.verifyAdmin,(req,res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
-  })
   server.get('*', (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });

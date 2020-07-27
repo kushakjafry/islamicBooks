@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { baseURL } from '../shared/baseurl';
@@ -34,9 +34,13 @@ export class AuthService {
   username: Subject<string> = new Subject<string>();
   authToken: string = undefined;
   admin: Subject<boolean> = new Subject<boolean>();
+  private currentUserSubject: BehaviorSubject<any>;
+  public currentUser: Observable<any>;
 
    constructor(private http: HttpClient,
      private processHTTPMsgService: ProcessHttpMessageService) {
+      this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('JWT')));
+      this.currentUser = this.currentUserSubject.asObservable();
    }
 
    checkJWTtoken() {
@@ -138,4 +142,12 @@ export class AuthService {
    getAdmin():Observable<boolean> {
      return this.admin.asObservable();
    }
+   public get currentUserValue() {
+    return this.currentUserSubject.value;
+   }
+   checkAdmin():Observable<any>{
+    return this.http.get<any>(baseURL+'users/isAdmin')
+    .pipe(catchError(this.processHTTPMsgService.handleError));
+   }
+
 }

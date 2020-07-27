@@ -118,6 +118,12 @@ router.options('*',corsWithOptions,(req,res) => {
     })(req,res,next);
    
   });
+
+  router.get('/isAdmin',authenticate.verifyUser,authenticate.verifyAdmin,corsWithOptions,(req,res,next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type','application/json')
+    res.json({success:true});
+  })
   
   router.get('/checkJWTToken',corsWithOptions,(req,res,next) => {
     passport.authenticate('jwt',{session: false},(err,user,info) => {

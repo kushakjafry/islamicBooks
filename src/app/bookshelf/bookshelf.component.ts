@@ -42,11 +42,30 @@ export class BookshelfComponent implements OnInit {
 
   onValueChanged(data?:any){
     console.log(data);
+    if(!this.searchForm.value.search){
+      this.booksSearch = this.books;
+    }
+  }
+  onSearch(){
     if(this.searchForm.value.search){
-      this.booksSearch = this.books.filter(el => el.name.toLowerCase().startsWith(data.search.toLowerCase()));
+      this.booksSearch = this.books.filter(el => el.name.toLowerCase().startsWith(this.searchForm.value.search.toLowerCase()));
       console.log(this.booksSearch);
+      (<any>window).ga('send', 'event', {
+        eventCategory: 'Books Search',
+        eventLabel: 'Search bar',
+        eventAction: this.searchForm.value.search,
+        eventValue: 1
+      });
     }else{
       this.booksSearch = this.books;
     }
+  }
+  sendBookName(name:string){
+    (<any>window).ga('send', 'event', {
+      eventCategory: 'Books Opened',
+      eventLabel: 'Book open',
+      eventAction: name,
+      eventValue: 2
+    });
   }
 }

@@ -5,7 +5,15 @@
         </div>
         <div class="col col-12 col-md-3 offset-md-3">
             <form novalidate [formGroup]="searchForm" #sform="ngForm">
-                <input type="text" class="form-control" placeholder="Search for books" formControlName="search">
+                <!-- <input type="text" class="form-control" placeholder="Search for books" formControlName="search"> -->
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for books" formControlName="search">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="onSearch()" type="button">
+                          <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+              </div>
             </form>
         </div>
 </div>
@@ -17,7 +25,7 @@
                 <img class="card-img-top" src="{{baseURLFile + book.image}}" alt="{{book.name}}" width="inherit" height="340px" style="object-fit: contain;">
                 
                 <div class="card-title">
-                    <a [routerLink]="['/books', book._id]" class="stretched-link card-link">{{book.name}}</a>
+                    <a [routerLink]="['/books', book._id]" class="stretched-link card-link" (click)="sendBookName(book.name)">{{book.name}}</a>
                 </div>
                 <div class="card-text">
                     <i>-{{book.author}}</i>

@@ -69,7 +69,7 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { ResetComponent } from './reset/reset.component';
 import { NavbarService } from './services/navbar.service';
 import { FooterService } from './services/footer.service';
-import { AdminGuardService } from './services/admin-guard.service';
+import { AdminGuard } from './guards/admin.guard';
 
 
 @NgModule({
@@ -135,7 +135,7 @@ import { AdminGuardService } from './services/admin-guard.service';
     ResetService,
     NavbarService,
     FooterService,
-    AdminGuardService,
+    AdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
