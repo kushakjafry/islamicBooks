@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
+declare let gtag:Function;
 
 @Component({
   selector: 'app-root',
@@ -9,18 +10,20 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 })
 
 
-
 export class AppComponent {
   title = 'islamicbooks';
 
-  constructor(private router: Router) {
+  constructor(public router: Router){   
     this.router.events.subscribe(event => {
-     if (event instanceof NavigationEnd) {
-       (<any>window).ga('set', 'page', event.urlAfterRedirects);
-       (<any>window).ga('send', 'pageview');
+       if(event instanceof NavigationEnd){
+           gtag('config', 'UA-173557744-1', 
+                 {
+                   'page_path': event.urlAfterRedirects
+                 }
+                );
+        }
      }
-   });
- }
+  )}
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }

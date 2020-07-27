@@ -2,7 +2,7 @@ import { Component, OnInit,Inject, ViewChild } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookService } from '../services/book.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import * as e from 'express';
+import{GoogleAnalyticsService} from '../services/google-analytics.service';
 
 @Component({
   selector: 'app-bookshelf',
@@ -23,7 +23,7 @@ export class BookshelfComponent implements OnInit {
   constructor(private bookService:BookService,
     @Inject('baseURL') private baseURL,
     @Inject('baseURLFile') private baseURLFile,
-    private fb:FormBuilder) {
+    private fb:FormBuilder,private googleAnalyticsService:GoogleAnalyticsService) {
       this.searchForm = this.fb.group({
         search: ''
       });
@@ -50,22 +50,12 @@ export class BookshelfComponent implements OnInit {
     if(this.searchForm.value.search){
       this.booksSearch = this.books.filter(el => el.name.toLowerCase().startsWith(this.searchForm.value.search.toLowerCase()));
       console.log(this.booksSearch);
-      (<any>window).ga('send', 'event', {
-        eventCategory: 'Books Search',
-        eventLabel: 'Search bar',
-        eventAction: this.searchForm.value.search,
-        eventValue: 1
-      });
+      this.googleAnalyticsService.eventEmitter('engagement',this.searchForm.value.search,'search_term',1)
     }else{
       this.booksSearch = this.books;
     }
   }
   sendBookName(name:string){
-    (<any>window).ga('send', 'event', {
-      eventCategory: 'Books Opened',
-      eventLabel: 'Book open',
-      eventAction: name,
-      eventValue: 2
-    });
+    this.googleAnalyticsService.eventEmitter('engagement',name,'books_opened',2)
   }
 }

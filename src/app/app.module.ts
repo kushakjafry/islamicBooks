@@ -53,7 +53,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { BaseUrlFile } from './shared/baseUrlFile';
 import { ConfirmationService} from './services/confirmation.service';
 import {MatMenuModule} from '@angular/material/menu';
-
+import {GoogleAnalyticsService} from './services/google-analytics.service';
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -136,6 +136,7 @@ import { AdminGuard } from './guards/admin.guard';
     NavbarService,
     FooterService,
     AdminGuard,
+    GoogleAnalyticsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
