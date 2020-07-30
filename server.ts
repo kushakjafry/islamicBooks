@@ -1,5 +1,5 @@
 import 'zone.js/dist/zone-node';
-import 'localstorage-polyfill'
+import 'localstorage-polyfill';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
@@ -9,6 +9,8 @@ import {default as userRouter} from './routes/userRouter';
 import {default as feedbackRouter } from './routes/feedbackRouter';
 import {default as confirmRouter} from './routes/confirmRouter';
 import {default as categoryRouter} from './routes/categoryRouter';
+import {default as googleApiRouter} from './routes/googleApiRouter';
+import {default as fileUploadRouter} from './routes/fileUploadRouter';
 import { join } from 'path';
 import * as mongoose from 'mongoose';
 import * as passport from 'passport';
@@ -53,6 +55,8 @@ export function app(): express.Express {
   server.use('/api/feedback',feedbackRouter);
   server.use('/api/confirm',confirmRouter);
   server.use('/api/category',categoryRouter);
+  server.use('/api/googleapi',googleApiRouter);
+  server.use('/api/fileUpload',fileUploadRouter);
   // Serve static files from /browser
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'

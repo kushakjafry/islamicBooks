@@ -4,13 +4,9 @@ import { Comment } from '../shared/Comment';
 import { BookService } from '../services/book.service';
 import { Params,ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { FormControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { faChevronLeft,faChevronRight,faDownload,faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import { Location } from '@angular/common';
-import { AuthService } from '../services/auth.service';
-
-
-
 
 @Component({
   selector: 'app-book',
@@ -19,10 +15,14 @@ import { AuthService } from '../services/auth.service';
 })
 export class BookComponent implements OnInit {
 
+  faChevronLeft=faChevronLeft;
+  faChevronRight=faChevronRight;
+  faDownload=faDownload;
+  faArrowLeft=faArrowLeft;
   @ViewChild('cform') commentFormDirective;
   book:Book;
   bookCopy:Book;
-  bookIds:string[];
+  bookNames:string[];
   prev: string;
   next:string;
   errMess:string;
@@ -65,23 +65,23 @@ export class BookComponent implements OnInit {
   ngOnInit(): void {
       this.createForm();
 
-      this.bookService.getBookIds().subscribe(bookIds => {this.bookIds = bookIds; console.log(this.bookIds)});
-      console.log(this.bookIds);
-      this.route.params.pipe(switchMap((params: Params) => { console.log(params['bookId']);return this.bookService.getBook(params['bookId']); }))
+      this.bookService.getBookNames().subscribe(bookNames => {this.bookNames = bookNames; console.log(this.bookNames)});
+      console.log(this.bookNames);
+      this.route.params.pipe(switchMap((params: Params) => { console.log(params['bookName']);return this.bookService.getBook(params['bookName']); }))
       .subscribe(book => {
       this.book = book;
-      this.setPrevNext(book._id);
+      this.setPrevNext(book.name);
       this.visibility = 'shown';
     },errmess => this.errMess = <any>errmess);
-      this.route.params.pipe(switchMap((params:Params) => { return this.bookService.getComment(params['bookId']);}))
+      this.route.params.pipe(switchMap((params:Params) => { return this.bookService.getComment(params['bookName']);}))
       .subscribe(comments => {
       this.comments = <[]>comments;
     },errmess => this.errMess = <any>errmess);
   }
-  setPrevNext(bookId: string) {
-    const index = this.bookIds.indexOf(bookId);
-    this.prev = this.bookIds[(this.bookIds.length + index - 1) % this.bookIds.length];
-    this.next = this.bookIds[(this.bookIds.length + index + 1) % this.bookIds.length];
+  setPrevNext(bookName: string) {
+    const index = this.bookNames.indexOf(bookName);
+    this.prev = this.bookNames[(this.bookNames.length + index - 1) % this.bookNames.length];
+    this.next = this.bookNames[(this.bookNames.length + index + 1) % this.bookNames.length];
   }
   goBack(): void {
     this.location.back();
@@ -121,12 +121,12 @@ export class BookComponent implements OnInit {
   }
 
   onSubmit() {
-    this.bookService.postComment(this.book._id, this.commentForm.value)
+    this.bookService.postComment(this.book.name, this.commentForm.value)
     .subscribe(book => {this.book = <Book>book;
       this.errMessComment = 'LoggedIn';
       this.alerts.type = "success";
       this.alerts.msg = "Comment SuccessFul";
-      this.route.params.pipe(switchMap((params:Params) => { return this.bookService.getComment(params['bookId']);}))
+      this.route.params.pipe(switchMap((params:Params) => { return this.bookService.getComment(params['bookName']);}))
       .subscribe(comments => {
       this.comments = <[]>comments;
     },errmess => this.errMess = <any>errmess)

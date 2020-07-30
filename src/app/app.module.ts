@@ -54,7 +54,9 @@ import { BaseUrlFile } from './shared/baseUrlFile';
 import { ConfirmationService} from './services/confirmation.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {GoogleAnalyticsService} from './services/google-analytics.service';
-
+import {GoogleapiService} from './services/googleapi.service';
+import {UserService} from './services/user.service';
+import {FileUploadService} from './services/file-upload.service';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -70,6 +72,7 @@ import { ResetComponent } from './reset/reset.component';
 import { NavbarService } from './services/navbar.service';
 import { FooterService } from './services/footer.service';
 import { AdminGuard } from './guards/admin.guard';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -120,7 +123,8 @@ import { AdminGuard } from './guards/admin.guard';
     AlertModule.forRoot(),
     NgxContentLoadingModule,
     BsDropdownModule.forRoot(),
-    MatMenuModule
+    MatMenuModule,
+    FontAwesomeModule,
   ],
   providers: [
     BookService,
@@ -137,6 +141,9 @@ import { AdminGuard } from './guards/admin.guard';
     FooterService,
     AdminGuard,
     GoogleAnalyticsService,
+    GoogleapiService,
+    UserService,
+    FileUploadService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

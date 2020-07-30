@@ -1,0 +1,24 @@
+<app-navigation>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-12">
+                <h1>Books</h1>
+            </div>
+            <div class="col col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]='["..","dashboard"]'>Dashboard</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Books</li>
+                    </ol>
+                  </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-12" id="booksTable">
+                <app-books-table></app-books-table>
+            </div>
+        </div>
+    </div>
+</app-navigation>

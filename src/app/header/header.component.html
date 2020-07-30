@@ -16,19 +16,19 @@
     <ngx-navbar-collapse id="main-nav" #collapse="ngxNavbarCollapse" >
     <ul class="navbar-nav mr-auto" >
         <li class="nav-item">
-            <a class="nav-link" mat-button routerLinkActive="active-link" routerLink="/home"><span class="fa fa-home fa-lg"></span> Home</a>
+            <a class="nav-link" mat-button routerLinkActive="active-link" routerLink="/home"><fa-icon [icon]="faHome"></fa-icon> Home</a>
         </li>
         <li>
-          <a class="nav-link" mat-button routerLinkActive="active-link" routerLink="/categories"><span class="fa fa-list-alt fa-lg"></span> Categories</a>
+          <a class="nav-link" mat-button routerLinkActive="active-link" routerLink="/categories"><fa-icon [icon]="faList"></fa-icon> Categories</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link"  mat-button routerLinkActive="active-link" routerLink="/books"><span class="fa fa-book fa-lg"></span> BookShelf</a>
+            <a class="nav-link"  mat-button routerLinkActive="active-link" routerLink="/books"><fa-icon [icon]="faBook"></fa-icon> BookShelf</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" mat-button routerLinkActive="active-link"routerLink="/contact"><span class="fa fa-phone fa-lg"></span> Contact</a>
+            <a class="nav-link" mat-button routerLinkActive="active-link"routerLink="/contact"><fa-icon [icon]="faPhone"></fa-icon> Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" mat-button routerLinkActive="active-link"routerLink="/aboutus"><span class="fa fa-info fa-lg"></span> About us</a>
+          <a class="nav-link" mat-button routerLinkActive="active-link"routerLink="/aboutus"><fa-icon [icon]="faInfo"></fa-icon> About us</a>
       </li>
       <li class="nav-item" *ngIf="isAdmin">
         <a class="nav-link" mat-button routerLinkActive="active-link"routerLink="/admin"> Admin</a>
@@ -36,18 +36,18 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a *ngIf="!username" class="nav-link" mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login</a></li>
-          <li class="nav-items"><a *ngIf="!username" class="nav-link" mat-button (click)="openSignupForm()"><span class="fa fa-user-plus fa-lg"></span> Signup</a></li>
+          <a *ngIf="!username" class="nav-link" mat-button (click)="openLoginForm()"><fa-icon [icon]="faSignInAlt"></fa-icon> Login</a></li>
+          <li class="nav-items"><a *ngIf="!username" class="nav-link" mat-button (click)="openSignupForm()"><fa-icon [icon]="faUserPlus"></fa-icon> Signup</a></li>
           <li class="nav-item" *ngIf="username"><span dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()">
             <a href id="basic-link" class="nav-link" dropdownToggle (click)="false"
-               aria-controls="basic-link-dropdown"><span class="fa fa-user fa-lg"></span> Profile <span class="fa fa-caret-{{caretStyle}} fa-lg"></span></a>
+               aria-controls="basic-link-dropdown"><fa-icon [icon]="faUser"></fa-icon> Profile <fa-icon [icon]="faCaret"></fa-icon></a>
             <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu dropdown-menu-right"
                 role="menu" aria-labelledby="basic-link">
               <li>
                 <a class="dropdown-item" mat-button style="text-align: left;" routerLink="/books" routerLinkActive="active-link">My Profile</a>
               </li>
               <li> 
-                <a class="dropdown-item" mat-button style="text-align: left;" (click)="logOut()"><span class="fa fa-sign-out fa-lg"></span> Logout</a>
+                <a class="dropdown-item" mat-button style="text-align: left;" (click)="logOut()"><fa-icon [icon]="faSignOutAlt"></fa-icon> Logout</a>
               </li>
             </ul>
           </span></li>

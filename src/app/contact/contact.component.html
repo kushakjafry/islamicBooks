@@ -1,4 +1,4 @@
-<header class="masthead" style="background-image: url('../../assets/contact-1.jpg')">
+<header class="masthead" style="background-image: url('../../assets/contact-1.jpg');box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
@@ -11,6 +11,18 @@
     </div>
   </div>
 </header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-12">
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]='[".."]'>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+          </ol>
+        </nav>
+  </div>
+  </div>
+</div>
 <div class="container">
     <div class="row-1">
       <div class="col col-12" *ngIf="errMess">

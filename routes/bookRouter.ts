@@ -56,12 +56,12 @@ bookRouter.route('/')
         .catch((err) => next(err));
 });
 
-bookRouter.route('/:bookId')
+bookRouter.route('/:bookName')
 .options(corsWithOptions,(req,res) => {
     res.sendStatus(200);
 })
 .get(cors(),(req,res,next) => {
-    BookModel.findById(req.params.bookId)
+    BookModel.findOne({name:req.params.bookName})
     .populate('cooments.user')
     .then((book) => {
         res.statusCode = 200;
@@ -74,7 +74,7 @@ bookRouter.route('/:bookId')
     res.end('Post Operation not supported');
 })
 .put(corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) => {
-    BookModel.findByIdAndUpdate(req.params.bookId,{
+    BookModel.findOneAndUpdate({name:req.params.bookName},{
         $set:req.body
     },{new:true})
     .then((book) => {
@@ -85,7 +85,7 @@ bookRouter.route('/:bookId')
     .catch((err) => next(err));
 })
 .delete(corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) => {
-    BookModel.findByIdAndRemove(req.params.bookId)
+    BookModel.findOneAndRemove({name:req.params.bookName})
     .then((resp) => {
         res.statusCode = 200;
         res.setHeader('Content-Type','application/json');
@@ -93,12 +93,12 @@ bookRouter.route('/:bookId')
     },(err) => next(err));
 });
 
-bookRouter.route('/:bookId/comments')
+bookRouter.route('/:bookName/comments')
 .options(corsWithOptions,(req,res) => {
     res.sendStatus(200);
 })
 .get(cors(),(req,res,next) => {
-    BookModel.findById(req.params.bookId)
+    BookModel.findOne({name:req.params.bookName})
     .populate('comments.user')
     .then((book:any) => {
         if(book != null){
@@ -106,7 +106,7 @@ bookRouter.route('/:bookId/comments')
             res.setHeader('Content-Type','application/json');
             res.json(book.comments);
         }else{
-            var err=new Error('Book' + req.params.bookId + 'not found') as ErrorWithStatus;
+            var err=new Error('Book' + req.params.bookName + 'not found') as ErrorWithStatus;
             err.status = 404;
             return next(err);
         }
@@ -114,7 +114,7 @@ bookRouter.route('/:bookId/comments')
     .catch((err) => next(err));
 })
 .post(corsWithOptions,authenticate.verifyUser,(req,res,next) => {
-    BookModel.findById(req.params.bookId)
+    BookModel.findOne({name:req.params.bookName})
         .then((book:any) => {
             if(book != null){
                 req.body.user = req.user._id;
@@ -131,7 +131,7 @@ bookRouter.route('/:bookId/comments')
                    
                 },(err) => next(err))
             }else{
-                var err = new Error('Book ' + req.params.bookId + ' not found') as ErrorWithStatus;
+                var err = new Error('Book ' + req.params.bookName + ' not found') as ErrorWithStatus;
                 err.status = 404;
                 return next(err);
             }
@@ -140,10 +140,10 @@ bookRouter.route('/:bookId/comments')
 })
 .put(corsWithOptions,authenticate.verifyUser,(req,res,next) => {
     res.statusCode=403;
-    res.end('Put operation not supported on books '+req.params.bookId);
+    res.end('Put operation not supported on books '+req.params.bookName);
 })
 .delete(corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) => {
-    BookModel.findById(req.params.bookId)
+    BookModel.findOne({name:req.params.bookName})
         .then((book:any) => {
             if(book != null){
                     for(var i = (book.comments.length - 1); i>=0 ; i--){
@@ -156,7 +156,7 @@ bookRouter.route('/:bookId/comments')
                         res.json(book);
                     },(err) => next(err))
         }else{
-                var err = new Error('Book ' + req.params.bookId + ' not found') as ErrorWithStatus;
+                var err = new Error('Book ' + req.params.bookName + ' not found') as ErrorWithStatus;
                 err.status = 404;
                 return next(err);
             }
@@ -164,10 +164,10 @@ bookRouter.route('/:bookId/comments')
             .catch((err) => next(err));
 });
 
-bookRouter.route('/:bookId/comments/:commentId')
+bookRouter.route('/:bookName/comments/:commentId')
 .options(corsWithOptions,(req,res) => { res.sendStatus(200); })
 .get(cors(),(req,res,next) => {
-    BookModel.findById(req.params.bookId)
+    BookModel.findOne({name:req.params.bookName})
     .populate('comments.user')
     .then((book:any) => {
         if(book != null && book.comments.id(req.params.commentId) != null){
@@ -175,7 +175,7 @@ bookRouter.route('/:bookId/comments/:commentId')
             res.setHeader('Content-Type','application/json');
             res.json(book.comments.id(req.params.commentId));
         }else if(book == null){
-            var err = new Error('book ' + req.params.bookId + ' not found') as ErrorWithStatus;
+            var err = new Error('book ' + req.params.bookName + ' not found') as ErrorWithStatus;
             err.status = 404;
             return next(err);
         }else{
@@ -188,10 +188,10 @@ bookRouter.route('/:bookId/comments/:commentId')
 })
 .post(corsWithOptions,authenticate.verifyUser,(req,res,next) => {
     res.statusCode = 403;
-    res.end('POST operation not supported on /books/'+ req.params.bookId+'/comments'+req.params.commentId);
+    res.end('POST operation not supported on /books/'+ req.params.bookName+'/comments'+req.params.commentId);
 })
 .put(corsWithOptions,authenticate.verifyUser,(req,res,next) => {
-    BookModel.findById(req.params.bookId)
+    BookModel.findOne({name:req.params.bookName})
     .then((book:any) => {
         if(book != null && book.comments.id(req.params.commentId) != null){
             if((book.comments.id(req.params.commentId).user).equals(req.user._id)){
@@ -217,7 +217,7 @@ bookRouter.route('/:bookId/comments/:commentId')
                 next(err);
             }
         }else if(book == null){
-            var err = new Error('Book ' + req.params.bookId + ' not found') as ErrorWithStatus;
+            var err = new Error('Book ' + req.params.bookName + ' not found') as ErrorWithStatus;
             err.status = 404;
             return next(err);
         }else{
@@ -229,7 +229,7 @@ bookRouter.route('/:bookId/comments/:commentId')
     .catch((err) => next(err));
 })
 .delete(corsWithOptions,authenticate.verifyUser,(req,res,next) => {
-    BookModel.findById(req.params.bookId)
+    BookModel.findOne({name:req.params.bookName})
         .then((book:any) => {
             if(book != null && book.comments.id(req.params.commentId) != null){
                 if((book.comments.id(req.params.commentId).user).equals(req.user._id)){
@@ -250,7 +250,7 @@ bookRouter.route('/:bookId/comments/:commentId')
                     next(err);
                 }
             }else if(book == null){
-                var err = new Error('Book ' + req.params.bookId + ' not found') as ErrorWithStatus;
+                var err = new Error('Book ' + req.params.bookName + ' not found') as ErrorWithStatus;
                 err.status = 404;
                 return next(err);
             }else{

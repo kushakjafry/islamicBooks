@@ -1,68 +1,86 @@
   <div class="container" *ngIf = "book">
     <div class="row">
-      <div>
+      <div class="col col-12">
         <h3>{{book.name | uppercase}}</h3>
         <h6>{{book.author}}</h6>
       </div>
     </div>
     <hr>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col col-12">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]='["../.."]'>Home</a></li>
+                <li class="breadcrumb-item"><a [routerLink]='[".."]'>Bookshelf</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{book.name}}</li>
+              </ol>
+            </nav>
+      </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col col-12 col-md-6">
-        <mat-card>
-          <img mat-card-image src="{{baseURLFile + book.image}}" alt={{book.name}}>
-          <mat-card-actions>
-          <div class="conatiner">
-            <div class="row">
-              <div class="col-2">        <button mat-button matTooltip="Previous book" [routerLink]="['/books',prev]"><span class="fa fa-chevron-left fa-lg"></span></button></div>
-              <div class ="col-2"> <button mat-button  matTooltip="Back to bookshelf" (click)="goBack()"><span class="fa fa-arrow-left fa-lg"></span></button></div>
-              <div class="col-4"><a href="{{baseURLFile + book.download}}" target="_blank"><button  matTooltip="read online"  class="btn btn-primary">Read Online</button></a></div>
-              <div class="col-2"><a href="{{baseURLFile + book.download}}" target="_blank" download ><button  matTooltip="Download pdf"  mat-button ><span class="fa fa-download fa-lg" style="color:black"></span></button></a></div>
-                <div class="col-2"><button mat-button  matTooltip="next Book" [routerLink]="['/books',next]"><span class="fa fa-chevron-right fa-lg"></span></button></div>
-            </div> 
+        <div class="card">
+          <img class="card-img-top" src="{{baseURLFile + book.image}}" alt="{{book.name}}">
+          <div class="card-body">
+            <div class="conatiner">
+              <div class="row">
+                <div class="col-2">        <button mat-button matTooltip="Previous book" [routerLink]="['/books',prev]"><fa-icon [icon]="faChevronLeft" size="lg"></fa-icon></button></div>
+                <div class ="col-2"> <button mat-button  matTooltip="Back to bookshelf" (click)="goBack()"><fa-icon [icon]="faArrowLeft" size="lg"></fa-icon></button></div>
+                <div class="col-4" style="text-align: center;"><a href="{{baseURLFile + book.download}}" target="_blank"><button  matTooltip="read online"  class="btn btn-primary" style="width: inherit;">Read Online</button></a></div>
+                <div class="col-2"><a href="{{baseURLFile + book.download}}" target="_blank" download ><button  matTooltip="Download pdf"  mat-button ><fa-icon [icon]="faDownload" size="lg"></fa-icon></button></a></div>
+                  <div class="col-2"><button mat-button  matTooltip="next Book" [routerLink]="['/books',next]"><fa-icon [icon]="faChevronRight" size="lg"></fa-icon></button></div>
+              </div> 
+            </div>
           </div>
-          </mat-card-actions>
-        </mat-card>
+        </div>
       </div>
       <div class="col col-12 col-md-6">
         <div class="row">
           <div class="col col-12">
-            <mat-card>
-              <mat-card-header>
-                <mat-card-title>
-                  <h2>Description </h2>
-                </mat-card-title>
-              </mat-card-header>
-              <hr>
-              <mat-card-content>{{book.description}}</mat-card-content>
-            </mat-card>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-12">
-            <mat-card>
-            <h2>Feedback</h2>
-            <div *ngIf="errMessComment">
-              <alert [type]="alerts.type">{{ alerts.msg }}</alert>
+            <div class="card">
+              <div class="card-header">
+                <h2>Description</h2>
               </div>
-            <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
-              <p>
-                <mat-slider min="1" max="5" step="1" thumbLabel tickInterval="1" name="rating" formControlName="rating"></mat-slider>
-                <mat-form-field class="full-width" [disabled] ="user">
-                  <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12></textarea>
-                  <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
-                </mat-form-field>
-              </p>
-              <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
-            </form>
-            </mat-card>
+              <div class="card-body">
+                {{book.description}}
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="col col-12">
-            <mat-card>
-              <mat-list>
+            <div class="card">
+              <div class="card-header">
+                <h2>Feedback</h2>
+              </div>
+              <div class="card-body">
+                <div *ngIf="errMessComment">
+                  <alert [type]="alerts.type">{{ alerts.msg }}</alert>
+                  </div>
+                  <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
+                    <p>
+                      <mat-slider min="1" max="5" step="1" thumbLabel tickInterval="1" name="rating" formControlName="rating"></mat-slider>
+                      <mat-form-field class="full-width" [disabled] ="user">
+                        <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12></textarea>
+                        <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+                      </mat-form-field>
+                    </p>
+                    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-12">
+            <div class="card">
+              <div class="card-header">
                 <h3>Comments</h3>
-                <hr>
+              </div>
+              <div class="card-body">
+                <mat-list>
                 <mat-list-item *ngFor="let comment of comments">
                   <h4 matLine> {{comment.comment}} </h4>
                   <p matLine> {{comment.rating}} Stars</p>
@@ -72,7 +90,8 @@
                 </mat-list-item>
                 <hr>
               </mat-list>
-            </mat-card>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,3 +1,112 @@
 <app-navigation>
-    <p>DashBoard works</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-12">
+                <h1>DashBoard</h1>
+            </div>
+            <div class="col col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                  </nav>
+            </div>
+            <div class="col col-12 col-md-6" *ngIf="lineChartData">
+                <div class="card">
+                    <div class="card-header">
+                      <fa-icon [icon]="faChartArea"></fa-icon> Users Chart
+                    </div>
+                    <div class="card-body">
+                        <div class="chartjs-container">
+                            <canvas baseChart 
+                                [datasets]="lineChartData" 
+                                [labels]="lineChartLabels" 
+                                [options]="lineChartOptions"
+                                [colors]="lineChartColors" 
+                                [legend]="lineChartLegend" 
+                                [chartType]="lineChartType" 
+                                [plugins]="lineChartPlugins"
+                                (chartHover)="chartHovered($event)" 
+                                (chartClick)="chartClicked($event)">
+                            </canvas>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col col-12 col-md-6" *ngIf="lineChartData">
+                <div class="card">
+                    <div class="card-header">
+                        <fa-icon [icon]="faChartBar"></fa-icon> Users Chart
+                    </div>
+                    <div class="card-body">
+                        <div class="chartjs-container">
+                            <canvas baseChart 
+                                [datasets]="lineChartData" 
+                                [labels]="lineChartLabels" 
+                                [options]="lineChartOptions"
+                                [colors]="lineChartColors" 
+                                [legend]="lineChartLegend" 
+                                [chartType]="lineChartType" 
+                                [plugins]="lineChartPlugins"
+                                (chartHover)="chartHovered($event)" 
+                                (chartClick)="chartClicked($event)">
+                            </canvas>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col col-12 col-md-8 offset-md-2" [hidden]="lineChartData || errMess">
+                <mat-spinner></mat-spinner>
+            </div>
+            <!-- <div class="col col-12 col-md-8 offset-md-2" *ngIf="errMess">
+                <h1>{{errMess}}</h1>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col col-12 col-md-6" *ngIf="lineChartData">
+                <div class="card">
+                    <div class="card-header">
+                        <fa-icon [icon]="faChartBar"></fa-icon> Users Chart
+                    </div>
+                    <div class="card-body">
+                        <div class="chartjs-container">
+                            <canvas baseChart 
+                                [datasets]="lineChartData" 
+                                [labels]="lineChartLabels" 
+                                [options]="lineChartOptions"
+                                [colors]="lineChartColors" 
+                                [legend]="lineChartLegend" 
+                                [chartType]="lineChartType" 
+                                [plugins]="lineChartPlugins"
+                                (chartHover)="chartHovered($event)" 
+                                (chartClick)="chartClicked($event)">
+                            </canvas>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col col-12 col-md-6" *ngIf="lineChartData">
+                <div class="card">
+                    <div class="card-header">
+                        <fa-icon [icon]="faChartBar"></fa-icon> Users Chart
+                    </div>
+                    <div class="card-body">
+                        <div class="chartjs-container">
+                            <canvas baseChart 
+                                [datasets]="lineChartData" 
+                                [labels]="lineChartLabels" 
+                                [options]="lineChartOptions"
+                                [colors]="lineChartColors" 
+                                [legend]="lineChartLegend" 
+                                [chartType]="lineChartType" 
+                                [plugins]="lineChartPlugins"
+                                (chartHover)="chartHovered($event)" 
+                                (chartClick)="chartClicked($event)">
+                            </canvas>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
 </app-navigation>

@@ -5,7 +5,7 @@
       margin-bottom: 10px;  
     }
 }
-.container-fluid
+#header
     {
         margin: 0px auto;
         padding: 30px 30px;
@@ -25,5 +25,8 @@
         opacity: 1;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
-
+    nav{
+        margin-top:1%;
+        box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
       

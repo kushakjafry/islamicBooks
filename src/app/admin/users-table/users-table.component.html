@@ -1,0 +1,45 @@
+<div class="mat-elevation-z11" *ngIf="showSpinner === false">
+    <mat-table [dataSource]="dataSource" matSort>
+        <!-- Number Column -->
+        <ng-container matColumnDef="No.">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="Name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+      
+        <!-- Email Column -->
+        <ng-container matColumnDef="Email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        </ng-container>
+      
+        <!-- Admin Column -->
+        <ng-container matColumnDef="Admin">
+          <mat-header-cell *matHeaderCellDef> Admin </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.admin}} </mat-cell>
+        </ng-container>
+    
+        <!-- Confirmed Column -->
+        <ng-container matColumnDef="Confirmed">
+            <mat-header-cell *matHeaderCellDef> Confirmed </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.confirmed}}</mat-cell>
+          </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+    </div>
+    
+    <div class="container" *ngIf="showSpinner === true">
+        <div class="row">
+            <div class="col col-12" style="text-align: center;vertical-align: middle; padding-top: 25vh; padding-bottom: 25vh;">
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+        </div>
+    </div>

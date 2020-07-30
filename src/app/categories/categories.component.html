@@ -1,10 +1,22 @@
-<div class="container-fluid">
+<div class="container-fluid" id="header">
     <div class="row">
         <div class="col col-12">
             <h1>Categories</h1>
         </div>
     </div>
 </div>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]='[".."]'>Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Categories</li>
+            </ol>
+          </nav>
+    </div>
+    </div>
+  </div>
 <div [hidden]="Categories">
 
     <app-loading></app-loading>

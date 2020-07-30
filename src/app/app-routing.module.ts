@@ -19,14 +19,14 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'books',component:BookshelfComponent},
   {path:'contact',component:ContactComponent},
-  {path:'books/:bookId',component:BookComponent},
+  {path:'books/:bookName',component:BookComponent},
   {path:'aboutus',component:AboutusComponent},
   {path:'confirm',component:ConfirmationComponent},
   {path:'categories',component:CategoriesComponent},
   {path:'category/:category',component:CategoryComponent},
   {path:'reset',component:ResetComponent},
   { path: 'admin',
-  canActivate:[AdminGuard],
+  // canActivate:[AdminGuard],
   loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path:'',redirectTo:'/home',pathMatch:'full'}
 ];

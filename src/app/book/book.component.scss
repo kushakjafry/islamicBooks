@@ -20,3 +20,13 @@ mat-card{
 .example-container .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
+nav{
+    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card{
+    margin-bottom:15px;
+    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    img{
+        border-radius: 10px;
+    }
+}

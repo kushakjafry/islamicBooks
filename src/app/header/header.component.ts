@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { SignupComponent } from '../signup/signup.component';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { NavbarService } from '../services/navbar.service';
+import { faHome,faPhone,faList,faBook,faInfo,faUserPlus,faSignInAlt,faCaretDown,faCaretUp,faSignOutAlt,faUser } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -16,12 +17,22 @@ import { NavbarService } from '../services/navbar.service';
   providers : [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
 export class HeaderComponent implements OnInit {
-
+  faHome = faHome;
+  faPhone= faPhone;
+  faList=faList;
+  faBook=faBook;
+  faInfo=faInfo;
+  faUserPlus=faUserPlus;
+  faSignInAlt=faSignInAlt;
+  faCaretDown=faCaretDown;
+  faCaretUp=faCaretUp;
+  faCaret = faCaretDown;
+  faSignOutAlt=faSignOutAlt;
+  faUser=faUser;
   
   show = false;
   username: string = undefined;
   subscription: Subscription;
-  caretStyle:string = 'down';
   isAdmin:Boolean = false;
   adminSubscription: Subscription;
 
@@ -58,7 +69,7 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.username = undefined;
     this.isAdmin = false;
-    this.caretStyle = 'down';
+    this.faCaret = faCaretDown;
     this.authService.logOut();
   }
 
@@ -86,10 +97,10 @@ export class HeaderComponent implements OnInit {
     console.log('Dropdown is shown');
   }
   isOpenChange(): void {
-    if(this.caretStyle === 'down'){
-      this.caretStyle = 'up';
-    }else if(this.caretStyle === 'up'){
-      this.caretStyle = 'down';
+    if(this.faCaret === faCaretDown){
+      this.faCaret = faCaretUp;
+    }else if(this.faCaret === faCaretUp){
+      this.faCaret = faCaretDown;
     }
   }
 

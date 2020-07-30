@@ -1,0 +1,84 @@
+<app-navigation-inside>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-12">
+                <h1>Books</h1>
+            </div>
+            <div class="col col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a [routerLink]='["../..","dashboard"]'>Dashboard</a></li>
+                      <li class="breadcrumb-item"><a [routerLink]='[".."]'>BookShelf</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Books</li>
+                    </ol>
+                  </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="book">
+        <div class="row">
+            <div class="col col-12">
+                <div style="text-align: center">
+                    <h1>Edit Book Data {{book.name}}</h1>
+                    <form novalidate [formGroup] = "BookForm" #bookform=ngForm (ngSubmit)="onSubmit()">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col col-12 col-md-6" style="text-align: center;">
+                                    <img src="{{baseURLFile+imagePreview}}" alt="{{book.name}}" style="object-fit: contain; max-width: 250px; max-height: 300px;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                </div>
+                                <div class="col col-12 col-md-6" style="text-align: center;height: inherit; align-self: center;">
+                                    <input type="file" name="image" (change)="selectImage($event)"/>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col col-12 col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Book name</mat-label>
+                                        <input matInput formControlName="name" type="text" required>
+                                        <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col col-12 col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Author</mat-label>
+                                        <input matInput formControlName="author" type="text" required>
+                                        <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col col-12 col-md-6">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Category</mat-label>
+                                            <input matInput formControlName="category" type="text" required>
+                                            <mat-error *ngIf="formErrors.category">{{formErrors.category}}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col col-12 col-md-6">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Description</mat-label>
+                                            <input matInput formControlName="description" type="text" required>
+                                            <mat-error *ngIf="formErrors.description">{{formErrors.description}}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-12" style="text-align: center;">
+                                    <button type="submit" class="btn btn-primary" style="box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" [disabled]="BookForm.invalid">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" [hidden]="book">
+        <div class="row">
+            <div class="col col-12" style="text-align: center;vertical-align: middle; padding-top: 25vh; padding-bottom: 25vh;">
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+        </div>
+    </div>
+</app-navigation-inside>
+

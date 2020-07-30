@@ -15,3 +15,11 @@
   top: 0;
   z-index: 1;
 }
+mat-nav-list{
+  a{
+    color: #fff;
+  }
+  a:hover{
+    background-color: rgba($color: black, $alpha: 0.5);
+  }
+}

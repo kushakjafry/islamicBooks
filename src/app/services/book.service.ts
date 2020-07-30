@@ -23,25 +23,29 @@ export class BookService {
         .pipe(catchError(this.processHTTPMsgService.handleError));
     }
   
-    getBook(id: string): Observable<Book> {
-      console.log(id);
-      return this.http.get<Book>(baseURL + 'books/' + id)
+    getBook(name: string): Observable<Book> {
+      console.log(name);
+      return this.http.get<Book>(baseURL + 'books/' + name)
         .pipe(catchError(this.processHTTPMsgService.handleError));
     }
   
   
-    getBookIds(): Observable<number[] | any> {
-      return this.getBooks().pipe(map(books => books.map(book => book._id)))
+    getBookNames(): Observable<number[] | any> {
+      return this.getBooks().pipe(map(books => books.map(book => book.name)))
         .pipe(catchError(error => error));
     }
   
-    postComment(bookId: string, comment: any) {
-      return this.http.post(baseURL + 'books/' + bookId + '/comments', comment)
+    postComment(bookName: string, comment: any) {
+      return this.http.post(baseURL + 'books/' + bookName + '/comments', comment)
       .pipe(catchError(this.processHTTPMsgService.handleError));
   
     }
-    getComment(bookId:string){
-      return this.http.get(baseURL+'books/'+bookId+'/comments')
+    getComment(bookName:string){
+      return this.http.get(baseURL+'books/'+bookName+'/comments')
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+    }
+    updateBook(form:any,bookName:string){
+      return this.http.put(baseURL+'books/'+bookName,form)
       .pipe(catchError(this.processHTTPMsgService.handleError));
     }
 }
