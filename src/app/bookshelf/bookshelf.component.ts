@@ -1,4 +1,4 @@
-import { Component, OnInit,Inject, ViewChild } from '@angular/core';
+import { Component, OnInit,Inject, ViewChild, Injector } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookService } from '../services/book.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -23,6 +23,7 @@ export class BookshelfComponent implements OnInit {
   constructor(private bookService:BookService,
     @Inject('baseURL') private baseURL,
     @Inject('baseURLFile') private baseURLFile,
+    @Inject('baseURLGoogle') private baseURLGoogle,
     private fb:FormBuilder,private googleAnalyticsService:GoogleAnalyticsService) {
       this.searchForm = this.fb.group({
         search: ''

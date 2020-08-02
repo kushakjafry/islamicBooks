@@ -51,12 +51,14 @@ import { ProcessHttpMessageService } from './services/process-http-message.servi
 import { LoginComponent } from './login/login.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { BaseUrlFile } from './shared/baseUrlFile';
+import { BaseUrlGoogle } from './shared/baseUrlGoogle';
 import { ConfirmationService} from './services/confirmation.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {GoogleAnalyticsService} from './services/google-analytics.service';
 import {GoogleapiService} from './services/googleapi.service';
 import {UserService} from './services/user.service';
 import {FileUploadService} from './services/file-upload.service';
+import {DeleteFileService} from './services/delete-file.service';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -130,6 +132,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BookService,
     {provide: 'baseURL', useValue: baseURL},
     {provide: 'baseURLFile',useValue: BaseUrlFile},
+    {provide: 'baseURLGoogle',useValue:BaseUrlGoogle},
     ProcessHttpMessageService,
     AuthService,
     FeedbackService,
@@ -144,6 +147,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     GoogleapiService,
     UserService,
     FileUploadService,
+    DeleteFileService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

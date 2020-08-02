@@ -29,4 +29,16 @@ export class CategoryService {
     return this.http.get<Book[]>(baseURL + 'category/'+category+'/books')
     .pipe(catchError(this.processHTTPMsgService.handleError));
   }
+  deleteCategory(category:string){
+    return this.http.delete(baseURL+'category/'+category)
+    .pipe(catchError(this.processHTTPMsgService.handleError));
+  }
+  updateCategory(form:any,category:String){
+    return this.http.put(baseURL+'category/'+category,form)
+    .pipe(catchError(this.processHTTPMsgService.handleError));
+  }
+  postCategory(form:any){
+    return this.http.post(baseURL+'category',form)
+    .pipe(catchError(this.processHTTPMsgService.handleError));
+  }
 }

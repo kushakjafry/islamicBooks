@@ -58,7 +58,8 @@ export class BookComponent implements OnInit {
     private route:ActivatedRoute,
     private location: Location,
     @Inject('baseURL') private baseURL,
-    @Inject('baseURLFile') private baseURLFile) {
+    @Inject('baseURLFile') private baseURLFile,
+    @Inject('baseURLGoogle') private baseURLGoogle) {
       
    }
 

@@ -31,6 +31,12 @@ import { BaseUrlFile } from '../shared/baseUrlFile';
 import { NavigationInsideComponent } from './navigation-inside/navigation-inside.component';
 import { MatFormFieldModule } from  '@angular/material/form-field';
 import { MatInputModule } from  '@angular/material/input';
+import { BaseUrlGoogle } from '../shared/baseUrlGoogle';
+import { CategoryTableComponent } from './category-table/category-table.component';
+import { AddBookComponent } from './add-book/add-book.component';
+import {MatSelectModule} from '@angular/material/select';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 
 
@@ -41,7 +47,7 @@ import { MatInputModule } from  '@angular/material/input';
     AdminUsersComponent, 
     AdminBooksComponent, 
     AdminCategoryComponent, 
-    AdminBookComponent, BooksTableComponent, UsersTableComponent, NavigationInsideComponent
+    AdminBookComponent, BooksTableComponent, UsersTableComponent, NavigationInsideComponent, CategoryTableComponent, AddBookComponent, EditCategoryComponent, AddCategoryComponent
   ],
   imports: [
     CommonModule,
@@ -61,11 +67,13 @@ import { MatInputModule } from  '@angular/material/input';
     ReactiveFormsModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers:[
     {provide: 'baseURL', useValue: baseURL},
     {provide: 'baseURLFile',useValue: BaseUrlFile},
+    {provide: 'baseURLGoogle', useValue: BaseUrlGoogle},
   ]
 })
 export class AdminModule { }

@@ -21,7 +21,8 @@ export class CategoryComponent implements OnInit {
   constructor(private categoryService:CategoryService,
     private bookService:BookService,
     @Inject('baseURLFile') private baseURLFile,
-    private route:ActivatedRoute) { }
+    private route:ActivatedRoute,
+    @Inject('baseURLGoogle') private baseURLGoogle) { }
 
   ngOnInit(): void {
     this.route.params.pipe(switchMap((params: Params) => { console.log(params['category']);return this.categoryService.getCategory(params['category']); }))

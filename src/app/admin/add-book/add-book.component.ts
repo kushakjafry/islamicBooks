@@ -12,11 +12,11 @@ import { NavbarService } from 'src/app/services/navbar.service';
 import { Book } from 'src/app/shared/book';
 
 @Component({
-  selector: 'app-admin-book',
-  templateUrl: './admin-book.component.html',
-  styleUrls: ['./admin-book.component.scss']
+  selector: 'app-add-book',
+  templateUrl: './add-book.component.html',
+  styleUrls: ['./add-book.component.scss']
 })
-export class AdminBookComponent implements OnInit {
+export class AddBookComponent implements OnInit {
 
   constructor(public nav:NavbarService,
     private fb:FormBuilder,
@@ -32,6 +32,7 @@ export class AdminBookComponent implements OnInit {
 
     @ViewChild('bookform') bookFormDirective;
     images;
+    bookPdf;
     hideform:boolean = false;
     imagePreview:string;
     Categories: String[];
@@ -46,7 +47,17 @@ export class AdminBookComponent implements OnInit {
       'description':'',
       'category':''
     };
-  
+    defaultAlerts: any = {
+      type: '',
+      msg : ''
+    }
+    successMess:string;
+    alerts = this.defaultAlerts;
+   
+    reset(): void {
+      this.alerts = this.defaultAlerts;
+    }
+
     validationMessages = {
       'name': {
         'required':'Book Name is required'
@@ -61,10 +72,17 @@ export class AdminBookComponent implements OnInit {
         'required':'Category is required'
       }
     };
+
     selectImage(event) {
       if (event.target.files.length > 0) {
         const file = event.target.files[0];
         this.images = file;
+      }
+    }
+    selectBook(event) {
+      if (event.target.files.length > 0) {
+        const file = event.target.files[0];
+        this.bookPdf = file;
       }
     }
     onSubmit(){
@@ -75,36 +93,41 @@ export class AdminBookComponent implements OnInit {
         this.fileUploadService.fileUploadBookImage(formData)
         .subscribe((res:any) => {
           this.imagePreview = res.file.id;
-          var UploadForm = {
-            'name':this.BookForm.value.name,
-            'category': this.BookForm.value.category,
-            'description':this.BookForm.value.description,
-            'author':this.BookForm.value.author,
-            'image':res.file.id
-          }
-          this.bookService.updateBook(UploadForm,this.book.name)
-          .subscribe((book:any) => {
-            this.deleteFileService.deleteBookImage(this.book.image)
-            .subscribe((books:any) => {
-              this.book = book;
-              this.hideform = false;
+          if(this.bookPdf){
+            const bookData = new FormData();
+          bookData.append('file',this.bookPdf);
+          this.fileUploadService.fileUploadBook(bookData)
+            .subscribe((resBook:any) => {
+              var UploadForm = {
+                'name':this.BookForm.value.name,
+                'category': this.BookForm.value.category,
+                'description':this.BookForm.value.description,
+                'author':this.BookForm.value.author,
+                'image':res.file.id,
+                'download':resBook.file.id
+              }
+              this.bookService.postBook(UploadForm)
+              .subscribe((book:any) => {
+                this.book = book;
+                this.hideform = false;
+                this.alerts.msg = 'Book Added Successfully';
+                this.alerts.type = 'success';
+                this.successMess = 'done';
             },(err) => {this.errMess = err,this.hideform = false})
           },(err) => {this.errMess = err,this.hideform = false})
+          }else{
+            this.alerts.msg = "No Book Uploaded"
+            this.alerts.type = "danger";
+            this.errMess = "No Book";
+          }
         },(err) => {this.errMess = err,this.hideform = false})
       }else{
-        var UploadForm = {
-          'name':this.BookForm.value.name,
-          'category': this.BookForm.value.category,
-          'description':this.BookForm.value.description,
-          'author':this.BookForm.value.author
-        }
-        this.bookService.updateBook(UploadForm,this.book.name)
-        .subscribe((book:any) => {
-          this.hideform = false;
-          this.book = book;
-        },(err) =>  {this.errMess = err,this.hideform = false})
+        this.alerts.msg = "No Image Uploaded"
+        this.alerts.type = "danger";
+        this.errMess = "No image";
       }
     }
+
   ngOnInit(): void {
     this.nav.hide();
     this.footer.hide();
@@ -113,30 +136,21 @@ export class AdminBookComponent implements OnInit {
       this.Categories = categories.map((category) => category.category);
       console.log(this.Categories);
     })
-      this.route.params.pipe(switchMap((params: Params) => { console.log(params['bookName']);return this.bookService.getBook(params['bookName']); }))
-      .subscribe(book => {
-      this.book = book;
-      this.createForm();
-      this.imagePreview = book.image;
-      this.visibility = 'shown';
-      },errmess => this.errMess = <any>errmess);
-        this.route.params.pipe(switchMap((params:Params) => { return this.bookService.getComment(params['bookName']);}))
-        .subscribe(comments => {
-        this.comments = <[]>comments;
-      },errmess => this.errMess = <any>errmess);
-    }
+    this.createForm();
+  }
 
   ngOnDestroy(){
     this.nav.show();
     this.footer.show();
     // this.subscription.unsubscribe();
   }
+  
   createForm(){
     this.BookForm = this.fb.group({
-      'name':[this.book.name,Validators.required],
-      'author':[this.book.author,Validators.required],
-      'description':[this.book.description,Validators.required],
-      'category':[this.book.category,Validators.required]
+      'name':['',Validators.required],
+      'author':['',Validators.required],
+      'description':['',Validators.required],
+      'category':['',Validators.required]
     })
     this.BookForm.valueChanges
     .subscribe(data => this.onValueChanged(data));
@@ -165,5 +179,20 @@ export class AdminBookComponent implements OnInit {
       }
     }
   }
-
+  resetButton(){
+    this.errMess = null;
+    this.successMess = null;
+    this.BookForm.reset({
+      name: '',
+      author:'',
+      description:'',
+      category:''
+    });
+    this.imagePreview = '';
+    this.bookFormDirective.resetForm();
+  }
+  alertDismiss(){
+    this.errMess = null;
+    this.successMess = null;
+  }
 }

@@ -29,7 +29,7 @@
         </div>
         <div class="col col-sm order-sm-first col-md" *ngIf="odd">
             <div class="media">
-                <img src="{{baseURLFile + category.image}}" class="d-flex mr-3 image-thumbnail align-self-center" style="object-fit: cover;" alt="{{category.category}}" width="110px" height="110px">
+                <img src="{{baseURLGoogle + category.image}}" class="d-flex mr-3 image-thumbnail align-self-center" style="object-fit: cover;" alt="{{category.category}}" width="110px" height="110px">
                 <div class=media-body>
                     <h2 class="mt-0">{{category.category}}</h2>
                     <p>{{category.description}}</p>
@@ -47,7 +47,7 @@
                     <p>{{category.description}}</p>
                     <a [routerLink]="['/category',category.category]" class="stretched-link">Search this category</a>
                 </div>
-                <img src="{{baseURLFile + category.image}}" class="d-flex mr-3 image-thumbnail align-self-center" style="object-fit: cover;" alt="{{category.category}}" width="110px" height="110px">
+                <img src="{{baseURLGoogle + category.image}}" class="d-flex mr-3 image-thumbnail align-self-center" style="object-fit: cover;" alt="{{category.category}}" width="110px" height="110px">
             </div>
         </div>
         <hr>

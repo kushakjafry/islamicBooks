@@ -56,7 +56,7 @@ categoryRouter.route('/:category')
     res.end('Post Operation not supported');
 })
 .put(corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) => {
-    CategoryModel.findByIdAndUpdate(req.params.category,{
+    CategoryModel.findOneAndUpdate({category:req.params.category},{
         $set:req.body
     },{new:true})
     .then((category) => {
@@ -67,7 +67,7 @@ categoryRouter.route('/:category')
     .catch((err) => next(err));
 })
 .delete(corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) => {
-    CategoryModel.findByIdAndRemove(req.params.category)
+    CategoryModel.findOneAndRemove({category:req.params.category})
     .then((resp) => {
         res.statusCode = 200;
         res.setHeader('Content-Type','application/json');

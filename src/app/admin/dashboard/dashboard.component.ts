@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
     // },(err) => {
     //   this.router.navigate(['/home']);
     // })
-    // this.chartsCreate();
+    this.chartsCreate();
   }
   ngOnDestroy(){
     this.nav.show();

@@ -1,4 +1,11 @@
-<div class="mat-elevation-z11" *ngIf="showSpinner === false">
+<div *ngIf="errMess || successMess">
+  <div class="alert alert-{{alerts.type}}">
+    <button type="button" class="close" (click)="alertDismiss()">&times;</button>
+    {{alerts.msg}}
+    </div>
+  </div>
+
+<div class="mat-elevation-z11">
 <mat-table [dataSource]="dataSource" matSort>
     <!-- Number Column -->
     <ng-container matColumnDef="No.">
@@ -27,7 +34,7 @@
     <!-- Edit Column -->
     <ng-container matColumnDef="Edit">
         <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
-        <mat-cell *matCellDef="let element"><a [routerLink]='[element.name]'>Edit </a></mat-cell>
+        <mat-cell *matCellDef="let element"><a [routerLink]='[element.name]'><fa-icon [icon]="faEdit"></fa-icon></a> <a mat-icon-button (click)="deleteBook(element)"><fa-icon [icon]="faTrash"></fa-icon></a></mat-cell>
       </ng-container>
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

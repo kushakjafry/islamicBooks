@@ -48,4 +48,12 @@ export class BookService {
       return this.http.put(baseURL+'books/'+bookName,form)
       .pipe(catchError(this.processHTTPMsgService.handleError));
     }
+    postBook(form:any){
+      return this.http.post(baseURL+'books',form)
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+    }
+    deleteBook(bookName:string){
+      return this.http.delete(baseURL+'books/'+bookName)
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+    }
 }

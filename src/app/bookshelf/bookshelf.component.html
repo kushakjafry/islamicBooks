@@ -34,7 +34,7 @@
     <div class="row">
         <div class='col col-12 col-sm-6 col-md-4 col-lg-3' *ngFor="let book of booksSearch" [routerLink]="['/books', book._id]">
             <div class="card" style="border: none;padding: 1%;">
-                <img class="card-img-top" src="{{baseURLFile + book.image}}" alt="{{book.name}}" width="inherit" height="340px" style="object-fit: contain;">
+                <img class="card-img-top" src="{{baseURLGoogle + book.image}}" alt="{{book.name}}" width="inherit" height="340px" style="object-fit: contain;">
                 
                 <div class="card-title">
                     <a [routerLink]="['/books', book.name]" class="stretched-link card-link" (click)="sendBookName(book.name)">{{book.name}}</a>

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { category } from '../shared/category';
 
@@ -13,7 +13,8 @@ export class CategoriesComponent implements OnInit {
   errMess: String[];
 
   constructor(private categoryService:CategoryService,
-    @Inject('baseURLFile') private baseURLFile) { }
+    @Inject('baseURLFile') private baseURLFile,
+    @Inject('baseURLGoogle') private baseURLGoogle) { }
 
   ngOnInit(): void {
     this.categoryService.getCategories()

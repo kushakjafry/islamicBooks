@@ -1,30 +1,39 @@
 <app-navigation-inside>
     <div class="container-fluid">
         <div class="row">
-            <div class="col col-12">
+            <div class="col col-6">
                 <h1>Books</h1>
+            </div>
+            <div class="col col-6" style="text-align: right;">
+                <button (click)="resetButton()" class="btn btn-danger" style="box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">Reset Form</button>
             </div>
             <div class="col col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a [routerLink]='["../..","dashboard"]'>Dashboard</a></li>
                       <li class="breadcrumb-item"><a [routerLink]='[".."]'>BookShelf</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Books</li>
+                      <li class="breadcrumb-item active" aria-current="page">Add Books</li>
                     </ol>
                   </nav>
             </div>
+            <div *ngIf="errMess || successMess">
+                <div class="alert alert-{{alerts.type}}">
+                  <button type="button" class="close" (click)="alertDismiss()">&times;</button>
+                  {{alerts.msg}}
+                  </div>
+                </div>
         </div>
     </div>
-    <div class="container" *ngIf="book && !hideform">
+    <div class="container" *ngIf="Categories && !hideform">
         <div class="row">
             <div class="col col-12">
                 <div style="text-align: center">
-                    <h1>Edit Book Data {{book.name}}</h1>
+                    <h1>Add new Book</h1>
                     <form novalidate [formGroup] = "BookForm" #bookform=ngForm (ngSubmit)="onSubmit()">
                         <div class="container">
                             <div class="row">
                                 <div class="col col-12 col-md-6" style="text-align: center;">
-                                    <img src="{{baseURLGoogle+imagePreview}}" alt="{{book.name}}" style="object-fit: contain; max-width: 250px; max-height: 300px;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                    <img src="{{baseURLGoogle+imagePreview}}" style="object-fit: contain; max-width: 250px; max-height: 300px;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                 </div>
                                 <div class="col col-12 col-md-6" style="text-align: center;height: inherit; align-self: center;">
                                     <input type="file" name="image" (change)="selectImage($event)"/>
@@ -70,7 +79,13 @@
                             </div>
                             <div class="row">
                                 <div class="col col-12" style="text-align: center;">
-                                    <button type="submit" class="btn btn-primary" style="box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" [disabled]="BookForm.invalid">Submit</button>
+                                    <label for="book">Upload the Book</label>
+                                    <input type="file" name="book" (change)="selectBook($event)"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-6" style="text-align: right;">
+                                    <button type="submit" class="btn btn-primary" style="box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" [disabled]="BookForm.invalid">Add Book</button>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +94,7 @@
             </div>
         </div>
     </div>
-    <div class="container" [hidden]="book">
+    <div class="container" [hidden]="Categories">
         <div class="row">
             <div class="col col-12" style="text-align: center;vertical-align: middle; padding-top: 25vh; padding-bottom: 25vh;">
                 <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
@@ -94,4 +109,3 @@
         </div>
     </div>
 </app-navigation-inside>
-

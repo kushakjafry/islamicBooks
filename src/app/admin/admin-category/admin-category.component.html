@@ -1,8 +1,11 @@
 <app-navigation>
     <div class="container-fluid">
         <div class="row">
-            <div class="col col-12">
+            <div class="col col-6">
                 <h1>Categories</h1>
+            </div>
+            <div class="col col-6" style="text-align: right;">
+                <button [routerLink]="['add']" class="btn btn-warning"><fa-icon [icon]="faPlusCircle"></fa-icon> Add Category</button>
             </div>
             <div class="col col-12">
                 <nav aria-label="breadcrumb">
@@ -11,6 +14,13 @@
                       <li class="breadcrumb-item active" aria-current="page">Categories</li>
                     </ol>
                   </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-12" id="booksTable">
+                <app-category-table></app-category-table>
             </div>
         </div>
     </div>

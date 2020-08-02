@@ -1,0 +1,1 @@
+export const BaseUrlGoogle = 'https://drive.google.com/uc?id=';

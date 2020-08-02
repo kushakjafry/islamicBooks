@@ -1,9 +1,14 @@
 <app-navigation>
     <div class="container-fluid">
         <div class="row">
-            <div class="col col-12">
+            <div class="col col-6">
                 <h1>Books</h1>
             </div>
+            <div class="col col-6" style="text-align: right;">
+                <button [routerLink]="['add']" class="btn btn-warning"><fa-icon [icon]="faPlusCircle"></fa-icon> Add Book</button>
+            </div>
+        </div>
+        <div class="row">
             <div class="col col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">

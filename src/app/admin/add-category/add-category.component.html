@@ -1,0 +1,76 @@
+<app-navigation-inside>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-6">
+                <h1>Category</h1>
+            </div>
+            <div class="col col-6" style="text-align: right;">
+                <button (click)="resetButton()" class="btn btn-danger" style="box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">Reset Form</button>
+            </div>
+            <div class="col col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a [routerLink]='["../..","dashboard"]'>Dashboard</a></li>
+                      <li class="breadcrumb-item"><a [routerLink]='[".."]'>Categories</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Add Category</li>
+                    </ol>
+                  </nav>
+            </div>
+            <div *ngIf="errMess || successMess">
+                <div class="alert alert-{{alerts.type}}">
+                  <button type="button" class="close" (click)="alertDismiss()">&times;</button>
+                  {{alerts.msg}}
+                  </div>
+                </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="!hideform">
+        <div class="row">
+            <div class="col col-12">
+                <div style="text-align: center">
+                    <h1>Add new Category</h1>
+                    <form novalidate [formGroup] = "CategoryForm" #categoryform=ngForm (ngSubmit)="onSubmit()">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col col-12 col-md-6" style="text-align: center;">
+                                    <img src="{{baseURLGoogle+imagePreview}}" style="object-fit: contain; max-width: 250px; max-height: 300px;box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                </div>
+                                <div class="col col-12 col-md-6" style="text-align: center;height: inherit; align-self: center;">
+                                    <input type="file" name="image" (change)="selectImage($event)"/>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col col-12 col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Category</mat-label>
+                                        <input matInput formControlName="category" type="text" required>
+                                        <mat-error *ngIf="formErrors.category">{{formErrors.category}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col col-12 col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Description</mat-label>
+                                        <input matInput formControlName="description" type="text" required>
+                                        <mat-error *ngIf="formErrors.description">{{formErrors.description}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-6" style="text-align: right;">
+                                    <button type="submit" class="btn btn-primary" style="box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" [disabled]="CategoryForm.invalid">Add Category</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="hideform">
+        <div class="row">
+            <div class="col col-12" style="text-align: center;vertical-align: middle; padding-top: 25vh; padding-bottom: 25vh;">
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+        </div>
+    </div>
+</app-navigation-inside>

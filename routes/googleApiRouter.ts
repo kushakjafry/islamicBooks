@@ -29,7 +29,7 @@ scopes
 
 jwt.authorize((err, response) =>{
   googleApiRouter.route('/user')
-    .get(cors(),(req,res,next) => {
+    .get(cors(),authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) => {
     google.analytics('v3').data.ga.get(
     {
       auth: jwt,
@@ -61,7 +61,7 @@ jwt.authorize((err, response) =>{
   )
 })
   googleApiRouter.route('/events/search')
-  .get(cors(),(req,res,next) => {
+  .get(cors(),authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) => {
     google.analytics('v3').data.ga.get(
       {
         auth: jwt,
@@ -70,15 +70,52 @@ jwt.authorize((err, response) =>{
         "end-date":'today',
         metrics:'ga:TotalEvents',
         dimensions:'ga:EventAction,ga:EventLabel,ga:EventCategory',
-        filters:'ga:TotalEvents>2',
-        sort:'-ga:TotalEvents',
-        "max-results":2
+        sort:'-ga:TotalEvents'
       },
       (err,result) => {
         if(result){
+          var SearchData = [];
+          result.data.rows.forEach(el => {
+            if(el[1]==='search_term'){
+              SearchData.push(el);
+            }
+          });
           res.statusCode = 200;
           res.setHeader('Content-Type','application/json');
-          res.json(result);
+          res.json({search:SearchData});
+        }else{
+          res.statusCode = 500;
+          res.setHeader('Content-Type','application/json');
+          res.json(err);
+        }
+      }
+    )
+  });
+  googleApiRouter.route('/events/bookOpened')
+  .get(cors(),authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) => {
+    google.analytics('v3').data.ga.get(
+      {
+        auth: jwt,
+        ids: 'ga:' + process.env.VIEW_ID,
+        "start-date":'20daysAgo',
+        "end-date":'today',
+        metrics:'ga:TotalEvents',
+        dimensions:'ga:EventAction,ga:EventLabel,ga:EventCategory',
+        sort:'-ga:TotalEvents'
+      },
+      (err,result) => {
+        if(result){
+          var BookData = [];
+          var SearchData = [];
+          result.data.rows.forEach(el => {
+            if(el[1]==='books_opened'){
+              BookData.push(el[0])
+              SearchData.push(el[3]);
+            }
+          });
+          res.statusCode = 200;
+          res.setHeader('Content-Type','application/json');
+          res.json({book:BookData,search:SearchData});
         }else{
           res.statusCode = 500;
           res.setHeader('Content-Type','application/json');

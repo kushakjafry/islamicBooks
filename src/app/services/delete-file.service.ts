@@ -8,20 +8,20 @@ import { ProcessHttpMessageService } from './process-http-message.service';
 @Injectable({
   providedIn: 'root'
 })
-export class FileUploadService {
+export class DeleteFileService {
 
   constructor(private http:HttpClient,private processHttpMsgService:ProcessHttpMessageService) { }
 
-  fileUploadBookImage(formData:FormData){
-    return this.http.post<any>(baseURL+'fileUpload/bookImage', formData)
+  deleteBookImage(id:String){
+    return this.http.delete(baseURL+'fileUpload/deleteBookImage?id='+id)
     .pipe(catchError(this.processHttpMsgService.handleError));
   }
-  fileUploadBook(formData:FormData){
-    return this.http.post<any>(baseURL+'fileUpload/book', formData)
+  deleteBook(id:String){
+    return this.http.delete(baseURL+'fileUpload/deleteBook?id='+id)
     .pipe(catchError(this.processHttpMsgService.handleError));
   }
-  fileUploadCategory(formData:FormData){
-    return this.http.post<any>(baseURL+'fileUpload/category',formData)
+  deleteCategory(id:String){
+    return this.http.delete(baseURL+'fileUpload/deleteCategory?id='+id)
     .pipe(catchError(this.processHttpMsgService.handleError));
   }
 }

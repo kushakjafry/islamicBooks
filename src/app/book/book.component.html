@@ -22,14 +22,14 @@
     <div class="row">
       <div class="col col-12 col-md-6">
         <div class="card">
-          <img class="card-img-top" src="{{baseURLFile + book.image}}" alt="{{book.name}}">
+          <img class="card-img-top" src="{{baseURLGoogle + book.image}}" alt="{{book.name}}">
           <div class="card-body">
             <div class="conatiner">
               <div class="row">
                 <div class="col-2">        <button mat-button matTooltip="Previous book" [routerLink]="['/books',prev]"><fa-icon [icon]="faChevronLeft" size="lg"></fa-icon></button></div>
                 <div class ="col-2"> <button mat-button  matTooltip="Back to bookshelf" (click)="goBack()"><fa-icon [icon]="faArrowLeft" size="lg"></fa-icon></button></div>
-                <div class="col-4" style="text-align: center;"><a href="{{baseURLFile + book.download}}" target="_blank"><button  matTooltip="read online"  class="btn btn-primary" style="width: inherit;">Read Online</button></a></div>
-                <div class="col-2"><a href="{{baseURLFile + book.download}}" target="_blank" download ><button  matTooltip="Download pdf"  mat-button ><fa-icon [icon]="faDownload" size="lg"></fa-icon></button></a></div>
+                <div class="col-4" style="text-align: center;"><a href="{{baseURLGoogle + book.download}}" target="_blank"><button  matTooltip="read online"  class="btn btn-primary" style="width: inherit;">Read Online</button></a></div>
+                <div class="col-2"><a href="{{baseURLGoogle + book.download}}" target="_blank" download ><button  matTooltip="Download pdf"  mat-button ><fa-icon [icon]="faDownload" size="lg"></fa-icon></button></a></div>
                   <div class="col-2"><button mat-button  matTooltip="next Book" [routerLink]="['/books',next]"><fa-icon [icon]="faChevronRight" size="lg"></fa-icon></button></div>
               </div> 
             </div>

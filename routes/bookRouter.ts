@@ -87,6 +87,7 @@ bookRouter.route('/:bookName')
 .delete(corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) => {
     BookModel.findOneAndRemove({name:req.params.bookName})
     .then((resp) => {
+        console.log('came to delete book');
         res.statusCode = 200;
         res.setHeader('Content-Type','application/json');
         res.json(resp);

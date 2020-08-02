@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FooterService } from 'src/app/services/footer.service';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-admin-books',
@@ -10,6 +12,8 @@ import { NavbarService } from 'src/app/services/navbar.service';
   styleUrls: ['./admin-books.component.scss']
 })
 export class AdminBooksComponent implements OnInit {
+
+  faPlusCircle = faPlusCircle;
 
   constructor(public nav:NavbarService,
     public footer:FooterService,private auth:AuthService,private router:Router) { }
