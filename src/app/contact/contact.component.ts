@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Feedback } from '../shared/feedback';
 import { FeedbackService } from '../services/feedback.service';
-import { ThrowStmt } from '@angular/compiler';
+import { faUser,faUserCircle,faPhone,faEnvelope,faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -10,18 +11,23 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+  faPhone=faPhone;
+  faUserCircle=faUserCircle;
+  faUser=faUser;
+  faEnvelope=faEnvelope;
+  faTimes=faTimes;
 
   feedbackForm: FormGroup;
   @ViewChild('feedbackform') feedbackFormDirective;
   contactType = [{
     type:'None',
-    icon:'times'
+    icon:'faTimes'
   },{
     type: 'Tel No.',
-    icon: 'phone'
+    icon: 'faPhone'
   },{
     type: 'Email',
-    icon:'envelope'
+    icon:'faEnvelope'
   }]
   feedback: Feedback;
   showForm: Boolean = true;
@@ -62,12 +68,17 @@ export class ContactComponent implements OnInit {
 
 
   constructor(private fb:FormBuilder,
-    private feedbackservice:FeedbackService) { 
+    private feedbackservice:FeedbackService,
+    private titleService: Title,
+    private metaTagService: Meta) { 
     this.createForm();
   }
   
   ngOnInit(): void {
-    
+    this.titleService.setTitle('Contact us');
+      this.metaTagService.addTag(
+      {name:'description',content:'Contact us by filling the form below'}
+    )
   }
 
   createForm(){

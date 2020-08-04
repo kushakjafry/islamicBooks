@@ -13,23 +13,23 @@
 
   <mat-dialog-content>
     <p>
-        <mat-form-field style="width: 45%;" appearance="outline">
+        <mat-form-field style="width: 95%;" appearance="outline">
           <mat-label>Full Name</mat-label>
             <input matInput type="text" [(ngModel)] = "signup.fullname" name="fullname" #fullname="ngModel" required>
-            <span matSuffix class="fa fa-user-circle"></span>
+            <span matSuffix><fa-icon [icon]="faUser"></fa-icon></span>
             <mat-error *ngIf="fullname.errors?.required">Name is required</mat-error>
         </mat-form-field>
-      <mat-form-field style="width: 45%;" appearance="outline">
+      <mat-form-field style="width: 95%;" appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput placeholder="Ex. some@some.com" type="text" [(ngModel)]="signup.username" name="username"  #username="ngModel" required email>
-        <span matSuffix class="fa fa-envelope"></span>
+        <span matSuffix><fa-icon [icon]="faEnvelope"></fa-icon></span>
         <mat-error *ngIf="username.errors?.required">Email is required</mat-error>
         <mat-error *ngIf="username.errors?.email">Email is not valid</mat-error>
       </mat-form-field>
       <mat-form-field style="width: 95%;" appearance="outline">
         <mat-label>Password</mat-label>
         <input matInput placeholder="Password" type="password" [(ngModel)]="signup.password" name="password" #password="ngModel" required>
-        <span matSuffix class="fa fa-lock"></span>
+        <span matSuffix><fa-icon [icon]="faLock"></fa-icon></span>
         <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
       </mat-form-field>
     </p>

@@ -3,6 +3,7 @@ import { Book } from '../shared/book';
 import { BookService } from '../services/book.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import{GoogleAnalyticsService} from '../services/google-analytics.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-bookshelf',
@@ -24,7 +25,9 @@ export class BookshelfComponent implements OnInit {
     @Inject('baseURL') private baseURL,
     @Inject('baseURLFile') private baseURLFile,
     @Inject('baseURLGoogle') private baseURLGoogle,
-    private fb:FormBuilder,private googleAnalyticsService:GoogleAnalyticsService) {
+    private fb:FormBuilder,private googleAnalyticsService:GoogleAnalyticsService,
+    private titleService: Title,
+    private metaTagService: Meta) {
       this.searchForm = this.fb.group({
         search: ''
       });
@@ -36,6 +39,10 @@ export class BookshelfComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Bookshelf');
+    this.metaTagService.addTag(
+      {name:'description',content:'Bookshelf for free pdf of urdu/islamic books'}
+    )
     this.bookService.getBooks()
       .subscribe(books => {this.books = books;this.booksSearch = books},
         errmess => this.errMess = <any>errmess);

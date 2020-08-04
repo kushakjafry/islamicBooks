@@ -33,12 +33,12 @@
                 <p>
                     <mat-form-field class="half-width">
                       <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
-                      <span matSuffix class="fa fa-user-circle"></span>
+                      <span matSuffix><fa-icon [icon]="faUserCircle"></fa-icon></span>
                       <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
                     </mat-form-field>
                     <mat-form-field class="half-width">
                       <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
-                      <span matSuffix class="fa fa-user"></span>
+                      <span matSuffix><fa-icon [icon]="faUser"></fa-icon></span>
                       <mat-error *ngIf="formErrors.lastname">{{formErrors.lastname}}</mat-error>
                     </mat-form-field>
                   </p>
@@ -46,13 +46,13 @@
                     <mat-form-field class="half-width">
                       <mat-label>Tel. Number</mat-label>
                       <input matInput formControlName="telnum" placeholder="Ex: 9998887776" type="tel" pattern="[0-9]*" required>
-                      <span matSuffix class="fa fa-phone"></span>
+                      <span matSuffix><fa-icon [icon]="faPhone"></fa-icon></span>
                       <mat-error *ngIf="formErrors.telnum">{{formErrors.telnum}}</mat-error>
                     </mat-form-field>
                     <mat-form-field class="half-width">
                       <mat-label>Email</mat-label>
                       <input matInput formControlName="email" placeholder="Ex. pat@example.com" type="email" email required>
-                      <span matSuffix class="fa fa-envelope"></span>
+                      <span matSuffix><fa-icon [icon]="faEnvelope"></fa-icon></span>
                       <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
                     </mat-form-field>
                   </p>
@@ -63,7 +63,7 @@
                     <td>
                       <mat-select placeholder="How?" formControlName="contacttype">
                         <mat-option *ngFor="let ctype of contactType" [value]="ctype.type">
-                          <span class="fa fa-{{ctype.icon}}"></span>  {{ ctype.type }}
+                          {{ ctype.type }}
                         </mat-option>
                       </mat-select>
                     </td>

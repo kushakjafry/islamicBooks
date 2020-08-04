@@ -19,6 +19,18 @@ const UserSchema = new mongoose.Schema({
     resetTime:{
         type:Date,
         required:false
+    },
+    bio:{
+        type:String,
+        default:''
+    },
+    gender:{
+        type:String,
+        default:''
+    },
+    profession:{
+        type:String,
+        default:''
     }
 });
 

@@ -7,6 +7,7 @@ import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { faChevronLeft,faChevronRight,faDownload,faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import { Location } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-book',
@@ -14,6 +15,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./book.component.scss']
 })
 export class BookComponent implements OnInit {
+  title = 'book';
 
   faChevronLeft=faChevronLeft;
   faChevronRight=faChevronRight;
@@ -59,7 +61,9 @@ export class BookComponent implements OnInit {
     private location: Location,
     @Inject('baseURL') private baseURL,
     @Inject('baseURLFile') private baseURLFile,
-    @Inject('baseURLGoogle') private baseURLGoogle) {
+    @Inject('baseURLGoogle') private baseURLGoogle,
+    private titleService: Title,
+    private metaTagService: Meta) {
       
    }
 
@@ -71,6 +75,11 @@ export class BookComponent implements OnInit {
       this.route.params.pipe(switchMap((params: Params) => { console.log(params['bookName']);return this.bookService.getBook(params['bookName']); }))
       .subscribe(book => {
       this.book = book;
+      this.title = book.name;
+      this.titleService.setTitle(this.title);
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Download book'+book.name }
+    );
       this.setPrevNext(book.name);
       this.visibility = 'shown';
     },errmess => this.errMess = <any>errmess);

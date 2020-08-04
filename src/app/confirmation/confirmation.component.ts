@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { resolveTypeReferenceDirective, updateShorthandPropertyAssignment } from 'typescript';
 import { ConfirmationService } from '../services/confirmation.service';
 import { AuthService } from '../services/auth.service';
+import { NavbarService } from '../services/navbar.service';
+import { FooterService } from '../services/footer.service';
 
 @Component({
   selector: 'app-confirmation',
@@ -17,9 +19,13 @@ export class ConfirmationComponent implements OnInit {
   constructor(private Activatedroute:ActivatedRoute,
     private confirmationService:ConfirmationService,
     private router:Router,
-    private auth:AuthService) {}
+    private auth:AuthService,
+    public nav:NavbarService,
+    public footer:FooterService) {}
 
   ngOnInit(): void {
+    this.nav.hide();
+    this.footer.hide();
   this.Activatedroute.queryParamMap
     .subscribe(params => {
       this.query = params.get('q');
@@ -35,6 +41,10 @@ export class ConfirmationComponent implements OnInit {
         }
       },errmess => this.errMess = errmess)
     },errmess => this.errMess = errmess);
+  }
+  ngOnDestroy(){
+    this.nav.show();
+    this.footer.show();
   }
 
 }

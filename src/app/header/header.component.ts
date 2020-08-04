@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
   isCollapsed = true;
 
   openLoginForm() {
-    const loginRef = this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
+    const loginRef = this.dialog.open(LoginComponent, {width: '500px', height: '600px'});
     loginRef.afterClosed()
     .subscribe(result => {
       console.log(result);
@@ -82,7 +82,7 @@ export class HeaderComponent implements OnInit {
   }
   
   openSignupForm(){
-    const SignupRef = this.dialog.open(SignupComponent,{width: '500px',height:'450px'});
+    const SignupRef = this.dialog.open(SignupComponent,{width: '500px',height:'600px'});
   }
   items: string[] = [
     this.username,

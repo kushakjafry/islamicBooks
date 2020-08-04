@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatDialogRef, MatDialog} from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
+import { faEnvelope,faLock,faUser } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -9,6 +10,9 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  faEnvelope=faEnvelope;
+  faLock = faLock;
+  faUser = faUser;
 
   @ViewChild('signupForm') signUpFormDirective;
   signup = {fullname:'',username:'',password:''};

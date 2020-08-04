@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title,
+    private metaTagService: Meta) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('ilmofikr')
+    this.metaTagService.addTag(
+      {name: 'description', content:'A website for free pdf urdu and islamic books'}
+    )
   }
 
 }

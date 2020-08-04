@@ -3,6 +3,7 @@ import {MatDialogRef, MatDialog} from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { SignupComponent } from '../signup/signup.component';
 import { ForgotComponent } from '../forgot/forgot.component';
+import { faEnvelope,faKey } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class LoginComponent implements OnInit {
   user = {username: '', password: '', remember: false};
   errMess: string;
   hideForm:boolean = false;
+  faEnvelope=faEnvelope;
+  faKey=faKey;
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
     public dialog: MatDialog,

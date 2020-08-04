@@ -15,17 +15,17 @@
 
   <mat-dialog-content>
     <p>
-      <mat-form-field style="width: 45%;" appearance="outline">
+      <mat-form-field style="width: 95%;" appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput placeholder="Email" type="text" [(ngModel)]="user.username" name="username"  #username="ngModel" required email [disabled]="hideForm" >
-        <span matSuffix class="fa fa-user-circle"></span>
+        <span matSuffix><fa-icon [icon]="faEnvelope"></fa-icon></span>
         <mat-error *ngIf="username.errors?.required">Email is required</mat-error>
         <mat-error *ngIf="username.errors?.email">Email is not valid</mat-error>
       </mat-form-field>
-      <mat-form-field style="width: 45%;" appearance="outline">
+      <mat-form-field style="width: 95%;" appearance="outline">
         <mat-label>Password</mat-label>
         <input matInput type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required [disabled]="hideForm">
-        <span matSuffix class="fa fa-key"></span>
+        <span matSuffix><fa-icon [icon]="faKey"></fa-icon></span>
         <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
       </mat-form-field>
       <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
