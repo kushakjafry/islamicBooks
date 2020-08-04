@@ -10,6 +10,9 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { ResetComponent } from './reset/reset.component';
 import { AdminGuard } from './guards/admin.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './guards/auth.guard';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -22,6 +25,8 @@ const routes: Routes = [
   {path:'categories',component:CategoriesComponent},
   {path:'category/:category',component:CategoryComponent},
   {path:'category/:category/:bookName',component:BookComponent},
+  {path:'profile/:username',component:ProfileComponent,canActivate: [AuthGuard]},
+  {path:'profile/edit/:username',component:EditProfileComponent,canActivate: [AuthGuard]},
   {path:'reset',component:ResetComponent},
   { path: 'admin',
   canActivate:[AdminGuard],

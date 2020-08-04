@@ -7,6 +7,7 @@ import { SignupComponent } from '../signup/signup.component';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { NavbarService } from '../services/navbar.service';
 import { faHome,faPhone,faList,faBook,faInfo,faUserPlus,faSignInAlt,faCaretDown,faCaretUp,faSignOutAlt,faUser } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 
 
@@ -39,7 +40,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(public dialog:MatDialog,
     private authService: AuthService,
-    public nav:NavbarService) {
+    public nav:NavbarService,
+    private router:Router) {
     
    }
   
@@ -102,6 +104,9 @@ export class HeaderComponent implements OnInit {
     }else if(this.faCaret === faCaretUp){
       this.faCaret = faCaretDown;
     }
+  }
+  navigateToProfile(){
+    this.router.navigate(['profile',this.username])
   }
 
 

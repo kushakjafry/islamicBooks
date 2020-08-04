@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-12" style="height: 519px;background-color: #373a3c;">
+            <a *ngIf="User" [routerLink]="[ '../edit',User.username]" style="text-decoration:none;color: #fff;float: right;margin-right: 10%; margin-top: 50px;"><fa-icon [icon]="faEdit" size="2x"></fa-icon></a>
+            <div class="row" style="margin-top: 120px;">
+                <div class="col col-12" style="text-align: center;">
+                    <img src="../../assets/images/avatar.png" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="avatar" width="150px" height="150px">
+                </div>
+            </div>
+            <div class="row" *ngIf="User">
+                <div class="col col-12" style="text-align: center;color: #fff;margin-top: 10px;">
+                    <h4>{{User.username}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="font-size: larger;position: relative; bottom: 150px;" *ngIf="User">
+    <div class="row">
+        <div class="col col-12 col-md-8 offset-md-2 column-raised">
+            <div class="row">
+                <div class="col col-12" style="text-align:center">
+                    <h2>My Profile</h2>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col col-12" style="text-align: center;">
+                    Fullname:  {{User.fullname}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-12" style="text-align: center;">
+                    Gender: {{User.gender}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-12" style="text-align: center;">
+                   Profession: {{User.profession}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-12" style="text-align: center;">
+                    Bio: {{User.bio}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="font-size: larger;position: relative; bottom: 150px;" [hidden]="User">
+    <div class="row">
+        <div class="col col-12 col-md-8 offset-md-2 column-raised">
+            <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
+                <div class="col col-12" style="text-align: center;vertical-align: middle; padding-top: 25vh; padding-bottom: 25vh;">
+                    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

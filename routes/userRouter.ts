@@ -240,7 +240,7 @@ router.options('*',corsWithOptions,(req,res) => {
   router.route('/:email')
   .options(corsWithOptions,(req,res) => { res.sendStatus(200);})
   .get(corsWithOptions,authenticate.verifyUser,(req,res,next) => {
-    if(req.body.email === req.user.username){
+    if(req.params.email === req.user.username){
     User.findOne({username:req.params.email})
     .then((user) => {
       res.statusCode = 200;
@@ -258,9 +258,9 @@ router.options('*',corsWithOptions,(req,res) => {
   })
   .put(corsWithOptions,authenticate.verifyUser,(req,res,next) => {
     if(<string>(req.user.username)===(<string>(req.params.email))){
-      if(req.body.oldpassword && req.body.newpassword && req.body.fullname){
+      if(req.body.oldpassword && req.body.newpassword){
         User.findOneAndUpdate({username:req.params.email},{
-          $set:{fullname:req.body.fullname}
+          $set:{fullname:req.body.fullname,gender:req.body.gender,profession:req.body.profession,bio:req.body.bio}
         },{new:true})
         .then((user) => {
           user.changePassword(req.body.oldpassword,req.body.newpassword)
@@ -270,20 +270,9 @@ router.options('*',corsWithOptions,(req,res) => {
             res.json(user);
           },err => next(err))
         },(err) => next(err))
-      }else if(req.body.oldpassword && req.body.newpassword){
-        User.findOne({username:req.params.email})
-        .then((user) => {
-          user.changePassword(req.body.oldpassword,req.body.newpassword)
-          .then((user) => {
-            res.statusCode = 200;
-            res.setHeader('Content-Type','application/json');
-            res.json(user);
-          },err => next(err))
-        },(err) => next(err))
-        .catch((err) => next(err));
-      }else if(req.body.fullname){
+      }else if(req.body.fullname || req.body.gender || req.body.profession || req.body.bio){
         User.findOneAndUpdate({username:req.params.email},{
-          $set:{fullname:req.body.fullname}
+          $set:{fullname:req.body.fullname,bio:req.body.bio,gender:req.body.gender,profession:req.body.profession}
         },{new:true})
         .then((user) => {
           res.statusCode = 200;
@@ -293,7 +282,7 @@ router.options('*',corsWithOptions,(req,res) => {
         .catch((err) => next(err));
       }else{
         res.statusCode = 401;
-        res.end('Only password and name change is allowed')
+        res.end('Only password, name , gender , bio and profession change is allowed')
       }
     }else{
       res.statusCode = 401;

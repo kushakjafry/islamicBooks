@@ -1,0 +1,12 @@
+
+.column-raised{
+    background-color: rgba(246, 251, 255, 1);
+    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .row{
+        margin-top: 20px;
+    }
+    .row:last-child{
+        margin-bottom: 20px;
+    }
+    @import './../styles//loadingring.scss';
+}

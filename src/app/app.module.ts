@@ -75,6 +75,9 @@ import { NavbarService } from './services/navbar.service';
 import { FooterService } from './services/footer.service';
 import { AdminGuard } from './guards/admin.guard';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './guards/auth.guard';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -94,7 +97,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CategoriesComponent,
     CategoryComponent,
     ForgotComponent,
-    ResetComponent
+    ResetComponent,
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -148,6 +153,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UserService,
     FileUploadService,
     DeleteFileService,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

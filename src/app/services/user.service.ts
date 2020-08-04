@@ -17,4 +17,8 @@ export class UserService {
       return this.http.get(baseURL+'users')
       .pipe(catchError(this.processHTTPMsgService.handleError));
     }
+    getUser(name:string){
+      return this.http.get(baseURL+'users/'+name)
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+    }
 }
