@@ -41,15 +41,12 @@
                     <div class="card-body">
                         <div class="chartjs-container">
                             <canvas baseChart 
-                                [datasets]="lineChartData" 
-                                [labels]="lineChartLabels" 
-                                [options]="lineChartOptions"
-                                [colors]="lineChartColors" 
-                                [legend]="lineChartLegend" 
-                                [chartType]="lineChartType" 
-                                [plugins]="lineChartPlugins"
-                                (chartHover)="chartHovered($event)" 
-                                (chartClick)="chartClicked($event)">
+                                [datasets]="searchBarChartData" 
+                                [labels]="searchBarChartLabels" 
+                                [options]="barChartOptions"
+                                [plugins]="searchBarChartPlugins" 
+                                [legend]="searchBarChartLegend" 
+                                [chartType]="searchBarChartType">
                             </canvas>
                         </div>
                     </div>
@@ -71,15 +68,12 @@
                     <div class="card-body">
                         <div class="chartjs-container">
                             <canvas baseChart 
-                                [datasets]="lineChartData" 
-                                [labels]="lineChartLabels" 
-                                [options]="lineChartOptions"
-                                [colors]="lineChartColors" 
-                                [legend]="lineChartLegend" 
-                                [chartType]="lineChartType" 
-                                [plugins]="lineChartPlugins"
-                                (chartHover)="chartHovered($event)" 
-                                (chartClick)="chartClicked($event)">
+                                [datasets]="bookBarChartData" 
+                                [labels]="bookBarChartLabels" 
+                                [options]="barChartOptions"
+                                [plugins]="bookBarChartPlugins" 
+                                [legend]="bookBarChartLegend" 
+                                [chartType]="bookBarChartType">
                             </canvas>
                         </div>
                     </div>
@@ -92,16 +86,15 @@
                     </div>
                     <div class="card-body">
                         <div class="chartjs-container">
-                            <canvas baseChart 
-                                [datasets]="lineChartData" 
-                                [labels]="lineChartLabels" 
-                                [options]="lineChartOptions"
-                                [colors]="lineChartColors" 
-                                [legend]="lineChartLegend" 
-                                [chartType]="lineChartType" 
-                                [plugins]="lineChartPlugins"
-                                (chartHover)="chartHovered($event)" 
-                                (chartClick)="chartClicked($event)">
+                            <canvas 
+                                baseChart 
+                                [data]="pieChartData" 
+                                [labels]="pieChartLabels" 
+                                [chartType]="pieChartType"
+                                [options]="pieChartOptions" 
+                                [plugins]="pieChartPlugins" 
+                                [colors]="pieChartColors" 
+                                [legend]="pieChartLegend">
                             </canvas>
                         </div>
                     </div>

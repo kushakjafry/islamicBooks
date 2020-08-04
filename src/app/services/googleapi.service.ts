@@ -16,4 +16,16 @@ export class GoogleapiService {
     return this.http.get<any>(baseURL+'googleapi/user')
     .pipe(catchError(this.processHttpErrMsgService.handleError))
   }
+  getSearchData():Observable<any>{
+    return this.http.get<any>(baseURL+'googleapi/events/search')
+    .pipe(catchError(this.processHttpErrMsgService.handleError))
+  }
+  getBooksData():Observable<any>{
+    return this.http.get(baseURL+'googleapi/events/bookOpened')
+    .pipe(catchError(this.processHttpErrMsgService.handleError));
+  }
+  getPagesData():Observable<any>{
+    return this.http.get<any>(baseURL+'googleapi/pages')
+    .pipe(catchError(this.processHttpErrMsgService.handleError));
+  }
 }
