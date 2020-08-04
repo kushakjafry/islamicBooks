@@ -1,6 +1,9 @@
-<div [hidden]="Category">
-    <mat-spinner></mat-spinner>
-    <h4>Loading please wait ...</h4>
+<div [hidden]='Category'>
+  <div class="row">
+    <div class="col col-12" style="text-align: center;vertical-align: middle; padding-top: 25vh; padding-bottom: 25vh;">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+</div>
 </div>
 
 
@@ -17,7 +20,7 @@
       </div>
     </div>
   </header>
-  <div class="container-fluid">
+  <div class="container-fluid" *ngIf="Category">
     <div class="row">
       <div class="col col-12">
         <nav aria-label="breadcrumb">
@@ -28,5 +31,59 @@
             </ol>
           </nav>
     </div>
+    </div>
+  </div>
+  <div class="container"  *ngIf="Category">
+    <div class="row">
+      <div class="col col-12 col-md-4 offset-md-8">
+        <form novalidate [formGroup]="searchForm" #sform="ngForm">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for books" formControlName="search">
+                <span class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="onSearch()" type="button">
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                  </button>
+                </span>
+          </div>
+        </form>
+    </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="books">
+    <div class="row">
+        <div class='col col-12 col-sm-6 col-md-4 col-lg-3' *ngFor="let book of booksSearch" >
+            <div class="card" style="border: none;padding: 1%;">
+                <img class="card-img-top" src="{{baseURLGoogle + book.image}}" alt="{{book.name}}" width="inherit" height="340px" style="object-fit: contain;">
+                
+                <div class="card-title">
+                    <a [routerLink]="[book.name]" [queryParams]="{categories: 'true'}" class="stretched-link card-link" (click)="sendBookName(book.name)">{{book.name}}</a>
+                </div>
+                <div class="card-text">
+                    <i>-{{book.author}}</i>
+                 </div>
+              </div>
+        </div>
+    </div>
+</div>       
+<div [hidden] ="books || errMess" class="loading-div"> 
+    <img src="assets/images/bookshelf.gif" alt="bookshelf.gif" id="loading">
+</div>
+<div class="container" *ngIf="errMess">
+    <div class="row d-flex justify-content-center">
+      <div class="col col-12 col-md-6">
+        <h2>Error</h2>
+        <h4>Opps! Internal Server Error plz visit after sometime</h4>       
+       </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="books && booksSearch.length === 0">
+    <div class="row d-flex justify-content-center" style="height: 40vh;">
+        <div class="col col-12 col-md-6">
+            <img src="assets/images/sadface.gif" alt="sadface.gif" width="150px">
+        </div>
+        <div class="col col-12 col-md-6">
+        <h2>No Books</h2>
+        <h4>Opps! No books found with that name</h4>       
+       </div>
     </div>
   </div>

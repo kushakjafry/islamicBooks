@@ -4,6 +4,7 @@ import { BookService } from '../services/book.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import{GoogleAnalyticsService} from '../services/google-analytics.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-bookshelf',
@@ -12,6 +13,7 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class BookshelfComponent implements OnInit {
 
+  faSearch=faSearch
   @ViewChild('sform') searchFormDirective;
   books: Book[];
   hover:boolean = false;
