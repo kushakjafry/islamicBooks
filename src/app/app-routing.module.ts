@@ -1,17 +1,14 @@
-import { NgModule, SystemJsNgModuleLoader } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { BookComponent } from './book/book.component';
 import { ContactComponent } from './contact/contact.component';
 import { BookshelfComponent} from './bookshelf/bookshelf.component';
-import { LoadingComponent } from './loading/loading.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
-import { SignupComponent } from './signup/signup.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { ResetComponent } from './reset/reset.component';
-import { AuthService } from './services/auth.service';
 import { AdminGuard } from './guards/admin.guard';
 
 
@@ -24,9 +21,10 @@ const routes: Routes = [
   {path:'confirm',component:ConfirmationComponent},
   {path:'categories',component:CategoriesComponent},
   {path:'category/:category',component:CategoryComponent},
+  {path:'category/:category/:bookName',component:BookComponent},
   {path:'reset',component:ResetComponent},
   { path: 'admin',
-  // canActivate:[AdminGuard],
+  canActivate:[AdminGuard],
   loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path:'',redirectTo:'/home',pathMatch:'full'}
 ];

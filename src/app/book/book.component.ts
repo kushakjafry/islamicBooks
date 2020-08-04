@@ -17,6 +17,8 @@ import { Title, Meta } from '@angular/platform-browser';
 export class BookComponent implements OnInit {
   title = 'book';
 
+
+  fromCategories:boolean = false;
   faChevronLeft=faChevronLeft;
   faChevronRight=faChevronRight;
   faDownload=faDownload;
@@ -68,11 +70,18 @@ export class BookComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.route.queryParamMap
+    .subscribe((params) => {
+      if(params.get('categories')){
+        this.fromCategories = true;
+      }
+    }
+  );
+  
       this.createForm();
-
       this.bookService.getBookNames().subscribe(bookNames => {this.bookNames = bookNames; console.log(this.bookNames)});
       console.log(this.bookNames);
-      this.route.params.pipe(switchMap((params: Params) => { console.log(params['bookName']);return this.bookService.getBook(params['bookName']); }))
+      this.route.params.pipe(switchMap((params: Params) => { return this.bookService.getBook(params['bookName']); }))
       .subscribe(book => {
       this.book = book;
       this.title = book.name;

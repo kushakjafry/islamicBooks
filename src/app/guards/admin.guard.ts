@@ -20,11 +20,10 @@ export class AdminGuard implements CanActivate {
       const currentUser = this.auth.currentUserValue;
       if(currentUser){
           if (currentUser.admin) {
-            // authorised so return true
             return true;
         }
       }
-    this.router.navigate(['/home'], { queryParams: { returnUrl: state.url }});
+    this.router.navigate(['/home']);
     return false;
   }
 }
