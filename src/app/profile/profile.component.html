@@ -16,6 +16,12 @@
     </div>
 </div>
 <div class="container" style="font-size: larger;position: relative; bottom: 150px;" *ngIf="User">
+    <div *ngIf="errMess">
+        <div class="alert alert-{{alerts.type}}">
+          <button type="button" class="close" (click)="alertDismiss()">&times;</button>
+          {{alerts.msg}}
+          </div>
+        </div>
     <div class="row">
         <div class="col col-12 col-md-8 offset-md-2 column-raised">
             <div class="row">
@@ -55,6 +61,20 @@
                     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="User">
+    <div class="row" style=" position: relative; bottom: 100px;">
+        <div class="col col-6" style="text-align: left;">
+            <button class="btn btn-primary btn-lg" [routerLink]="['../edit',User.username]">
+                Edit Profile
+            </button>
+        </div>
+        <div class="col col-6" style="text-align: right;">
+            <button class="btn btn-secondary btn-lg" (click)="deleteAccount()">
+                Delete Account
+            </button>
         </div>
     </div>
 </div>

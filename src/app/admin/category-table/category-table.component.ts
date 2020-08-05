@@ -87,10 +87,6 @@ export class CategoryTableComponent implements OnInit {
         this.dataSource.data = newArrayData;
       },(err) => {this.errMess = err; this.alerts.msg = 'error occured';this.alerts.type="danger";this.showSpinner = false;})
     },(err) => {this.errMess = err; this.alerts.msg = 'error occured';this.alerts.type="danger";this.showSpinner = false;})
-  }else{
-    this.alerts.msg = "No Image submitted";
-    this.alerts.type = "danger";
-    this.errMess = "No Image"
   }
 }
 alertDismiss(){

@@ -21,4 +21,12 @@ export class UserService {
       return this.http.get(baseURL+'users/'+name)
       .pipe(catchError(this.processHTTPMsgService.handleError));
     }
+    updateUser(form:any,name:string){
+      return this.http.put(baseURL+'users/'+name,form)
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+    }
+    deleteAccount(name:string){
+      return this.http.delete(baseURL+'users/'+name)
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+    }
 }

@@ -21,8 +21,6 @@ export class BookshelfComponent implements OnInit {
   booksSearch: Book[];
   searchForm: FormGroup;
 
-
-
   constructor(private bookService:BookService,
     @Inject('baseURL') private baseURL,
     @Inject('baseURLFile') private baseURLFile,
