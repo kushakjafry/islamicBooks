@@ -9,7 +9,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxContentLoadingModule } from 'ngx-content-loading';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
