@@ -1,42 +1,73 @@
-<footer class="footer" *ngIf="footer.visible" style="box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+<footer
+  class="footer"
+  *ngIf="footer.visible"
+  style="
+    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  "
+>
   <div class="container">
-      <div class="row">             
-          <div class="col-4 offset-1 col-sm-2">
-              <h5>Links</h5>
-              <ul class="list-unstyled">
-                  <li><a [routerLink]="['home']">Home</a></li>
-                  <li><a [routerLink]="['aboutus']" >About</a></li>
-                  <li><a  [routerLink]="['books']">Books</a></li>
-                  <li><a  [routerLink]="['contact']">Contact</a></li>
-              </ul>
-          </div>
-          <div class="col-7 col-sm-5">
-              <h5>Our Address</h5>
-              <address>
-            121, Clear Water Bay Road<br>
-            Clear Water Bay, Kowloon<br>
-            HONG KONG<br>
-            <fa-icon [icon]="faPhone"></fa-icon> : +852 1234 5678<br>
-                <fa-icon [icon]="faFax"></fa-icon> : +852 8765 4321<br>
-                <fa-icon [icon]="faEnvelope"></fa-icon> : <a href="mailto:confusion@food.net">confusion@food.net</a>
-         </address>
-          </div>
-          <div class="col-12 col-sm-4 align-self-center"> 
-              <div class="text-center">
-                <a mat-icon-button class="btn-instagram" href="https://www.instagram.com"><fa-icon [icon]="faInstagram" size="lg"></fa-icon></a>
-                <a mat-icon-button class="btn-facebook" href="https://www.facebook.com/profile.php?id="><fa-icon [icon]="faFacebook" size="lg"></fa-icon></a>
-                <a mat-icon-button class="btn-linkedin" href="https://www.linkedin.com/in/"><fa-icon [icon]="faLinkedin"size="lg"></fa-icon></a>
-                <a mat-icon-button class="btn-twitter" href="https://twitter.com/"><fa-icon [icon]="faTwitter"size="lg"></fa-icon></a>
-                <a mat-icon-button class="btn-youtube" href="https://youtube.com/"><fa-icon [icon]="faYoutube"size="lg"></fa-icon></a>
-                <a mat-icon-button class="btn-github" href="https://github.com/"><fa-icon [icon]="faGithub"size="lg"></fa-icon></a>
-                <a mat-icon-button class="btn-mail" href="mailto:"><fa-icon [icon]="faEnvelope"size="lg"></fa-icon></a>
-              </div>
-          </div>
-     </div>
-     <div class="row justify-content-center">             
-          <div class="col-auto">
-              <p>© Copyright 2020 Islamic Books</p>
-          </div>
-     </div>
+    <div class="row">
+      <div class="col-4 offset-1 col-sm-2">
+        <h5>Links</h5>
+        <ul class="list-unstyled">
+          <li><a [routerLink]="['home']">Home</a></li>
+          <li><a [routerLink]="['aboutus']">About</a></li>
+          <li><a [routerLink]="['books']">Books</a></li>
+          <li><a [routerLink]="['contact']">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-7 col-sm-5">
+        <h5>Our Address</h5>
+        <address>
+          Jamia Nagar<br />
+          New Delhi<br />
+          India<br />
+          <fa-icon [icon]="faPhone"></fa-icon> : +222 333 4444<br />
+          <fa-icon [icon]="faFax"></fa-icon> : +111 222 3333<br />
+          <fa-icon [icon]="faEnvelope"></fa-icon> :
+          <a href="mailto:admin@ilmofikr.com">admin@ilmofikr.com</a>
+        </address>
+      </div>
+      <div class="col-12 col-sm-4 align-self-center">
+        <div class="text-center">
+          <a
+            mat-icon-button
+            class="btn-instagram"
+            href="https://www.instagram.com"
+            ><fa-icon [icon]="faInstagram" size="lg"></fa-icon
+          ></a>
+          <a
+            mat-icon-button
+            class="btn-facebook"
+            href="https://www.facebook.com/profile.php?id="
+            ><fa-icon [icon]="faFacebook" size="lg"></fa-icon
+          ></a>
+          <a
+            mat-icon-button
+            class="btn-linkedin"
+            href="https://www.linkedin.com/in/"
+            ><fa-icon [icon]="faLinkedin" size="lg"></fa-icon
+          ></a>
+          <a mat-icon-button class="btn-twitter" href="https://twitter.com/"
+            ><fa-icon [icon]="faTwitter" size="lg"></fa-icon
+          ></a>
+          <a mat-icon-button class="btn-youtube" href="https://youtube.com/"
+            ><fa-icon [icon]="faYoutube" size="lg"></fa-icon
+          ></a>
+          <a mat-icon-button class="btn-github" href="https://github.com/"
+            ><fa-icon [icon]="faGithub" size="lg"></fa-icon
+          ></a>
+          <a mat-icon-button class="btn-mail" href="mailto:"
+            ><fa-icon [icon]="faEnvelope" size="lg"></fa-icon
+          ></a>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <p>© Copyright 2020 Islamic Books</p>
+      </div>
+    </div>
   </div>
 </footer>
