@@ -171,6 +171,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "islamicbooks"
+    }
+  },
+  "defaultProject": "islamicbooks",
+  "cli": {
+    "analytics": false
+  }
 }

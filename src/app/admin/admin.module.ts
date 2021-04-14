@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 import { AdminRoutingModule } from './admin-routing.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -29,25 +28,31 @@ import { UsersTableComponent } from './users-table/users-table.component';
 import { baseURL } from '../shared/baseurl';
 import { BaseUrlFile } from '../shared/baseUrlFile';
 import { NavigationInsideComponent } from './navigation-inside/navigation-inside.component';
-import { MatFormFieldModule } from  '@angular/material/form-field';
-import { MatInputModule } from  '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { BaseUrlGoogle } from '../shared/baseUrlGoogle';
 import { CategoryTableComponent } from './category-table/category-table.component';
 import { AddBookComponent } from './add-book/add-book.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 
-
-
 @NgModule({
-  declarations: [DashboardComponent, 
-    NavigationComponent, 
-    AdminFooterComponent, 
-    AdminUsersComponent, 
-    AdminBooksComponent, 
-    AdminCategoryComponent, 
-    AdminBookComponent, BooksTableComponent, UsersTableComponent, NavigationInsideComponent, CategoryTableComponent, AddBookComponent, EditCategoryComponent, AddCategoryComponent
+  declarations: [
+    DashboardComponent,
+    NavigationComponent,
+    AdminFooterComponent,
+    AdminUsersComponent,
+    AdminBooksComponent,
+    AdminCategoryComponent,
+    AdminBookComponent,
+    BooksTableComponent,
+    UsersTableComponent,
+    NavigationInsideComponent,
+    CategoryTableComponent,
+    AddBookComponent,
+    EditCategoryComponent,
+    AddCategoryComponent,
   ],
   imports: [
     CommonModule,
@@ -68,12 +73,13 @@ import { AddCategoryComponent } from './add-category/add-category.component';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
   ],
-  providers:[
-    {provide: 'baseURL', useValue: baseURL},
-    {provide: 'baseURLFile',useValue: BaseUrlFile},
-    {provide: 'baseURLGoogle', useValue: BaseUrlGoogle},
-  ]
+  providers: [
+    { provide: 'baseURL', useValue: baseURL },
+    { provide: 'baseURLFile', useValue: BaseUrlFile },
+    { provide: 'baseURLGoogle', useValue: BaseUrlGoogle },
+  ],
+  bootstrap: [DashboardComponent],
 })
-export class AdminModule { }
+export class AdminModule {}
